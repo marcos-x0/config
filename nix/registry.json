@@ -1,0 +1,15 @@
+{
+  "flakes": [
+    {
+      "from": {
+        "id": "mgj-nix-darwin",
+        "type": "indirect"
+      },
+      "to": {
+        "path": "/Users/mgj/.config/nix",
+        "type": "path"
+      }
+    }
+  ],
+  "version": 2
+}

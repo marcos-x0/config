@@ -1,0 +1,150 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+#
+## .zhrc for mac
+#
+#
+
+#[ -f ~/.dotfiles/aliasrc ] && . ~/.dotfiles/aliasrc
+#[ -f ~/.dotfiles/zshenv ] && . ~/.dotfiles/zshenv
+
+export TERM="xterm-256color"
+#export LSCOLORS=exfxcxdxbxegedabagacad
+export CLICOLOR=1
+export LSCOLORS=gxfxcxexbxegedabaggCgd
+
+
+#export WASMTIME_HOME="$HOME/.wasmtime"
+#export PATH="$WASMTIME_HOME/bin:$PATH"
+#export PATH=/Library/Developer/Toolchains/swift-latest/usr/bin:"${PATH}"
+
+export HOSTNAME=mac
+
+#export NODE_PATH="$HOME/lib/node_modules"
+#eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+
+
+#source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+#source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+HISTSIZE=10001
+SAVEHIST=10000
+HISTFILE=~/.zhistory
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt RM_STAR_SILENT
+#setopt AUTO_PUSHD
+#setopt PUSHD_IGNORE_DUPS
+
+setopt AUTO_CD
+setopt CORRECT
+setopt CHASE_DOTS
+setopt PUSHD_IGNORE_DUPS
+setopt ALWAYS_TO_END
+#setopt CORRECT_ALL
+
+#bindkey -v
+#bindkey -M viins '\e?'     backward-delete-char
+#bindkey -M viins '\eH'     backward-delete-char
+#bindkey -M viins '\e[3~'   delete-char
+
+#bindkey -M viins '\e[1;2C' forward-word
+#bindkey -M viins '\e[1;2D' backward-word
+#bindkey -M viins '\e[F'    end-of-line
+#bindkey -M viins '\e[H'    beginning-of-line
+
+#bindkey -M viins '\eOA'    up-line-or-history
+#bindkey -M viins '\eOB'    down-line-or-history
+#bindkey -M viins '\e[5~'   beginning-of-buffer-or-history
+#bindkey -M viins '\e[6~'   end-of-buffer-or-history
+
+
+
+
+
+
+
+# export PATH="$HOME/.cargo/bin:$PATH"
+
+# export WASMTIME_HOME="$HOME/.wasmtime"
+
+# export PATH="$WASMTIME_HOME/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# it is important vim mode be defined before fzf
+[[ ! -f ~/.config/zsh/zsh-vim-mode.plugin.zsh ]] || source ~/.config/zsh/zsh-vim-mode.plugin.zsh
+
+eval "$(fzf --zsh)"
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+  --highlight-line \
+  --info=inline-right \
+  --ansi \
+  --layout=reverse \
+  --border=none
+  --color=bg+:#283457 \
+  --color=bg:#16161e \
+  --color=border:#27a1b9 \
+  --color=fg:#c0caf5 \
+  --color=gutter:#16161e \
+  --color=header:#ff9e64 \
+  --color=hl+:#2ac3de \
+  --color=hl:#2ac3de \
+  --color=info:#545c7e \
+  --color=marker:#ff007c \
+  --color=pointer:#ff007c \
+  --color=prompt:#2ac3de \
+  --color=query:#c0caf5:regular \
+  --color=scrollbar:#27a1b9 \
+  --color=separator:#ff9e64 \
+  --color=spinner:#ff007c \
+"
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+#export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
+  esac
+}
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+export BAT_THEME=tokyonight_night
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"
