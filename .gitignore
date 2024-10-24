@@ -1,0 +1,12 @@
+*bak
+configstore
+containers
+iterm2
+nvim-*
+.DS_store
+*.swo
+*.swp
+.undo
+.backup
+.swap
+fontconfig
