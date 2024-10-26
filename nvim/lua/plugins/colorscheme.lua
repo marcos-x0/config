@@ -1,11 +1,11 @@
 return {
   "tokyonight.nvim",
   opts = {
-    transparent = true,
+    -- transparent = true,
     style = "night",
     styles = {
-      sidebars = "transparent",
-      floats = "transparent",
+      -- sidebars = "transparent",
+      -- floats = "transparent",
     },
     on_highlights = function(hl, c)
       -- Vertical split line

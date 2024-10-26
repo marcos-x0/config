@@ -115,6 +115,16 @@ config.keys = {
 		-- split_pane_or_send_to_nvim(window, pane, "vertical")
 	},
 	{
+		key = "?",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "_",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
 		key = "\\",
 		mods = "CTRL|META",
 		action = wezterm.action_callback(function(window, pane)
