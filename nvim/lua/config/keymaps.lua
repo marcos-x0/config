@@ -128,6 +128,8 @@ end, { noremap = true, silent = true, desc = "Move to the split below" })
 vim.keymap.set("n", "<M-C-->", ":vsplit<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-C-\\>", ":split<CR>", { noremap = true, silent = true })
 
+-- Key mapping to format the line legth to vim.opt.textwidth
+vim.keymap.set("n", "<leader>cb", "ggVGgq", { noremap = true, silent = true, desc = "Format buffer to 80 columns" })
 -- Primeagen's keymaps
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block down" })

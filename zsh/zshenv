@@ -30,7 +30,12 @@ export CONTAINERS_REGISTRIES_CONF="~/.config/containers/registries.conf"
 # export PATH=$HOME/.bin:/usr/local/share/npm/bin:$PATH
 #
 
-alias cd....='cd ../../../..'
+#
+# nv() {
+#     /Applications/Neovide.app/Contents/MacOS/neovide "$@" &
+# }
+#
+ alias cd....='cd ../../../..'
 alias cd...='cd ../../..'
 alias cd..='cd ../..'
 alias cd.='cd ..'
