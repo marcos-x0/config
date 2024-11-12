@@ -8,14 +8,22 @@ return {
     popup_border_style = "rounded",
     window = {
       position = "float", -- Set position to float
-      width = 40, -- Customize the width of the floating window
+      width = "fit-content", -- Customize the width of the floating window
+      auto_expand_wdith = false,
       mappings = {
         ["<space>"] = "toggle_node",
         ["P"] = { "toggle_preview", config = { use_float = true } }, -- Enable preview in a floating window
       },
-      popup = {
-        position = { col = "0%", row = "0%" }, -- Left Corner the popup window
+      popup = { -- settings that apply to float position only
+        size = {
+          height = "80%",
+          width = "25%",
+        },
+        position = "50%",
       },
+      -- popup = {
+      --   position = { col = "0%", row = "0%" }, -- Left Corner the popup window
+      -- },
     },
     default_component_configs = {
       git_status = {
@@ -37,6 +45,7 @@ return {
     },
     filesystem = {
       auto_follow_current_file = true,
+      --follow_current_file = true,
       preview = true,
       use_libuv_file_watcher = true,
       window = {
