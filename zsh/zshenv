@@ -16,6 +16,8 @@ export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS/"
 #export PATH="$HOME/miniconda3/bin/:$PATH"
 
 #export VIMINIT='source $XDG_CONFIG_HOME/vim/vimrc'
+export DENO_DIR=/Volumes/Tritium/.deno_cache
+
 
 export CONTAINERS_REGISTRIES_CONF="~/.config/containers/registries.conf"
 # export ANDROID_HOME=$HOME/Library/Android/Sdk
