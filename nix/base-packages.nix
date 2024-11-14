@@ -36,13 +36,14 @@ with pkgs;
     (nerdfonts.override {
       fonts = [
         "JetBrainsMono"
-        "Iosevka"
-        "IosevkaTerm"
+        "VictorMono"
       ];
     })
 
     # basic dev env now
+    podman
     nodejs
+    deno
     ruby
     pnpm
     luarocks

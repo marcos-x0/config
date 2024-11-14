@@ -1,16 +1,20 @@
 [general]
 import = ["./nord.toml"]
 
+[env]
+TERM = 'alacritty'
+
 [window]
 padding = { x = 8, y = 8 }
 dynamic_title = false
 title = ""
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
-bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
-bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+# normal = { family = "VictorMono Nerd Font", style = "Bold Italic" }
+normal = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended" }
+bold = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended Bold" }
+italic = { family = "VictorMono Nerd Font", style = "Italic" }
+bold_italic = { family = "VictorMono Nerd Font", style = "Bold Italic" }
 size = 12.0
 
 [scrolling]
