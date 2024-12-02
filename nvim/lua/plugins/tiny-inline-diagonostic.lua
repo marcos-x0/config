@@ -9,6 +9,14 @@ return {
     --   underline = true, -- optional, customize as needed
     --   update_in_insert = false, -- optional
     -- })
-    require("tiny-inline-diagnostic").setup()
+    require("tiny-inline-diagnostic").setup({
+      options = {
+        throttle = 2000,
+        show_source = true,
+        multilines = true,
+        show_all_diags_on_cursorline = true,
+        enable_on_insert = true,
+      },
+    })
   end,
 }
