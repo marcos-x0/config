@@ -4,6 +4,8 @@
 vim.g.maplocalleader = "\t"
 vim.opt.colorcolumn = "80"
 vim.opt.textwidth = 79
+vim.g.snacks_animate = false
+
 -- vim.opt.formatoptions:append("w") -- Break lines at whitespace
 -- vim.opt.linebreak = true
 -- vim.opt.wrap = true --vim.opt.formatoptions:append("l") -- Break long words

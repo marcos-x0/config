@@ -29,7 +29,7 @@ config.visual_bell = {
 	fade_out_duration_ms = 32,
 }
 
-config.font = wezterm.font({ family = "JetBrainsMono Nerd Font" })
+config.font = wezterm.font({ family = "IosevkaMgjTerm Nerd Font" })
 config.font_size = 11.5
 config.line_height = 1.0
 config.native_macos_fullscreen_mode = false

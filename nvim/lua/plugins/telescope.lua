@@ -27,6 +27,7 @@ return {
   keys = {
     { "<leader/", LazyVim.pick("live_grep", { root = false }), desc = "Grep (root Dir)" },
     { "<leader><space>", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+    { "<leader>b", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
   },
 }
 
