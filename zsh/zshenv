@@ -37,7 +37,10 @@ export CONTAINERS_REGISTRIES_CONF="~/.config/containers/registries.conf"
 #     /Applications/Neovide.app/Contents/MacOS/neovide "$@" &
 # }
 #
- alias cd....='cd ../../../..'
+
+alias clean-nvim="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
+
+alias cd....='cd ../../../..'
 alias cd...='cd ../../..'
 alias cd..='cd ../..'
 alias cd.='cd ..'
