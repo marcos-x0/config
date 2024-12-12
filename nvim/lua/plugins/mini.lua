@@ -5,26 +5,36 @@ return {
     config = function()
       -- Setup only `mini.comment` for now
       require('mini.comment').setup()
-      -- You can configure other modules here in the future, e.g.,
-      -- require('mini.surround').setup()
-      -- require('mini.pairs').setup()
-      -- Add modules incrementally as needed
 
-      -- require('mini.files').setup {
-      --   mappings = {
-      --     go_in = '<Right>',
-      --     go_in_plus = '<CR>',
-      --     go_out = '<Left>',
-      --     go_out_plus = '<BS>',
-      --     reset = '~',
-      --   },
+      -- Better Around/Inside textobjects
       --
-      --   windows = {
-      --     preview = true,
-      --     width_preview = 50,
-      --   },
-      -- }
-      vim.keymap.set('n', '-', require('mini.files').open, { desc = 'Open parent directory' })
+      -- Examples:
+      --  - va)  - [V]isually select [A]round [)]paren
+      --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+      --  - ci'  - [C]hange [I]nside [']quote
+      require('mini.ai').setup { n_lines = 500 }
+
+      -- Add/delete/replace surroundings (brackets, quotes, etc.)
+      --
+      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+      -- - sd'   - [S]urround [D]elete [']quotes
+      -- - sr)'  - [S]urround [R]eplace [)] [']
+      require('mini.surround').setup()
+
+      -- -- Simple and easy statusline.
+      -- --  You could remove this setup call if you don't like it,
+      -- --  and try some other statusline plugin
+      -- local statusline = require 'mini.statusline'
+      -- -- set use_icons to true if you have a Nerd Font
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
+      --
+      -- -- You can configure sections in the statusline by overriding their
+      -- -- default behavior. For example, here we set the section for
+      -- -- cursor location to LINE:COLUMN
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_location = function()
+      --   return '%2l:%-2v'
+      -- end
     end,
   },
 }

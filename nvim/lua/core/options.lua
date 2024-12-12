@@ -1,5 +1,11 @@
+vim.o.confirm = true
+vim.o.completeopt = 'menu,menuone,noselect'
+
+-- qq
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+
+vim.opt.laststatus = 3
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`

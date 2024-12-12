@@ -63,21 +63,29 @@ map('n', '<leader>e', function()
 end)
 
 -- load the session for the current directory
-vim.keymap.set('n', '<leader>qs', function()
+map('n', '<leader>qs', function()
   require('persistence').load()
 end)
 
 -- select a session to load
-vim.keymap.set('n', '<leader>qS', function()
+map('n', '<leader>qS', function()
   require('persistence').select()
 end)
 
 -- load the last session
-vim.keymap.set('n', '<leader>ql', function()
+map('n', '<leader>ql', function()
   require('persistence').load { last = true }
 end)
 
 -- stop Persistence => session won't be saved on exit
-vim.keymap.set('n', '<leader>qd', function()
+map('n', '<leader>qd', function()
   require('persistence').stop()
 end)
+
+map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Save and Quit All' })
+
+-- Normal mode mapping to replace the word under the cursor
+map('n', '<leader>rw', '<CMD>SearchReplaceSingleBufferCWord<CR>', { desc = 'Replace word under cursor' })
+
+-- Visual mode mapping to replace the selected text
+map('x', '<leader>r', '<CMD>SearchReplaceSingleBufferVisualSelection<CR>', { desc = 'Replace selected text' })
