@@ -30,6 +30,7 @@ map({ 'n', 'i' }, '<D-Up>', '<C-w><C-k>', { desc = 'Move focus to the upper wind
 map({ 'n', 'i', 'v' }, '<D-s>', '<cmd>w<CR>', { desc = 'Save file' }) -- Command + S: Save
 map({ 'n', 'i', 'v' }, '<D-S-s>', '<cmd>wa<CR>', { desc = 'Save all files' }) -- Command + Shift + S: Save all
 -- map({ 'n', 'i' }, '<D-q>', '<cmd>q<CR>', { desc = 'Quit' }) -- Command + Q: Quit
+
 map({ 'n', 'i' }, '<D-S-q>', '<cmd>q!<CR>', { desc = 'Force quit' }) -- Command + Shift + Q: Force quit
 map({ 'n', 'i' }, '<D-p>', '<cmd>Telescope find_files<CR>', { desc = 'Find files' }) -- Command + P: Find files
 
@@ -59,4 +60,24 @@ map('n', '<F2>', ':IncRename ')
 
 map('n', '<leader>e', function()
   vim.cmd('Neotree reveal source=filesystem position=float dir=' .. vim.fn.getcwd())
+end)
+
+-- load the session for the current directory
+vim.keymap.set('n', '<leader>qs', function()
+  require('persistence').load()
+end)
+
+-- select a session to load
+vim.keymap.set('n', '<leader>qS', function()
+  require('persistence').select()
+end)
+
+-- load the last session
+vim.keymap.set('n', '<leader>ql', function()
+  require('persistence').load { last = true }
+end)
+
+-- stop Persistence => session won't be saved on exit
+vim.keymap.set('n', '<leader>qd', function()
+  require('persistence').stop()
 end)

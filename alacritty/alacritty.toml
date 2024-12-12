@@ -25,3 +25,14 @@ hide_when_typing = true
 
 [cursor]
 style = "Beam"
+
+# [keys_bindings]
+# key = "F"
+# mods = ["Command"]
+# action = "None"
+
+[keyboard]
+bindings = [
+    { key = "f", mods = "Command", chars = "\u001b[27;9;102~"  }
+]
+
