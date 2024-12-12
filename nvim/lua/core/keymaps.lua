@@ -56,4 +56,7 @@ map({ 'n', 'i' }, '<D-S-f>', '<cmd>Telescope live_grep<CR>', { desc = 'Search in
 map({ 'n', 'i' }, '<D-p>', '<cmd>Telescope current_buffer_fuzzy_find<CR>', { desc = 'Search in file' })
 
 map('n', '<F2>', ':IncRename ')
-vim.keymap.set('n', '<leader>rp', ':IncRename ')
+
+map('n', '<leader>e', function()
+  vim.cmd('Neotree reveal source=filesystem position=float dir=' .. vim.fn.getcwd())
+end)
