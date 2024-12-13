@@ -31,8 +31,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 require('lazy').setup({
   { import = 'plugins' },
-  { import = 'kickstart.plugins' },
-  { 'LazyVim/LazyVim' },
+  { import = 'lsp' },
 
   -- LSP Plugins e
   -- Highlight todo, notes, etc in comments

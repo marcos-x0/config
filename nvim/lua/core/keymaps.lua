@@ -58,9 +58,9 @@ map({ 'n', 'i' }, '<D-p>', '<cmd>Telescope current_buffer_fuzzy_find<CR>', { des
 
 map('n', '<F2>', ':IncRename ')
 
-map('n', '<leader>e', function()
-  vim.cmd('Neotree reveal source=filesystem position=float dir=' .. vim.fn.getcwd())
-end)
+-- map('n', '<leader>e', function()
+--   vim.cmd('Neotree reveal source=filesystem position=float dir=' .. vim.fn.getcwd())
+-- end)
 
 -- load the session for the current directory
 map('n', '<leader>qs', function()
