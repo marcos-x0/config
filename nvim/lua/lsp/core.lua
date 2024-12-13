@@ -14,20 +14,7 @@ return {
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
   },
-  config = function(_, opts)
-    local util = require 'lspconfig.util'
-
-    opts.diagnostics = { virtual_text = false, underline = true }
-    -- Define curly underline for diagnostics
-    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { sp = 'Red', undercurl = true })
-    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { sp = 'Yellow', undercurl = true })
-    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { sp = 'Blue', undercurl = true })
-    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { sp = 'Cyan', undercurl = true })
-
-    -- opts.root_dir = function(fname)
-    --   return util.root_patterb '.git'(fname) or vim.fn.getcwd()
-    -- end
-
+  config = function()
     -- Brief aside: **What is LSP?**
     --
     -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -141,6 +128,7 @@ return {
         --
         -- This may be unwanted, since they displace some of your code
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          vim.lsp.inlay_hint.enable(true)
           map('<leader>th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
           end, '[T]oggle Inlay [H]ints')
@@ -149,22 +137,14 @@ return {
     })
 
     -- Change diagnostic symbols in the sign column (gutter)
-    if vim.g.have_nerd_font then
-      local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-      local diagnostic_signs = {}
-      for type, icon in pairs(signs) do
-        diagnostic_signs[vim.diagnostic.severity[type]] = icon
-      end
-      vim.diagnostic.config { signs = { text = diagnostic_signs } }
-    end
-
-    -- Ensure the servers and tools above are installed
-    --  To check the current status of installed tools and/or manually install
-    --  other tools, you can run
-    --    :Mason
-    --
-    --  You can press `g?` for help in this menu.
-    require('mason').setup()
+    -- if vim.g.have_nerd_font then
+    --   local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+    --   local diagnostic_signs = {}
+    --   for type, icon in pairs(signs) do
+    --     diagnostic_signs[vim.diagnostic.severity[type]] = icon
+    --   end
+    --   vim.diagnostic.config { signs = { text = diagnostic_signs } }
+    -- end
 
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -210,23 +190,45 @@ return {
     --     },
     --   },
     -- }
-    --
 
-    -- Require and configure `denols`
-    local denols = require 'lsp.servers.denols'
-    denols(opts, require 'lspconfig')
-
-    require('mason-tool-installer').setup { ensure_installed = {} }
+    local servers = {}
+    -- Load Lua LSP configuration and merge servers
+    local lua_ls = require 'lsp.servers.lua_ls'
+    servers = vim.tbl_deep_extend('force', servers, lua_ls.servers)
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
+    local ensure_installed = vim.tbl_keys(servers or {})
+
+    vim.list_extend(ensure_installed, lua_ls.ensure_installed or {})
+
+    local denols = require 'lsp.servers.denols'
+    servers = vim.tbl_deep_extend('force', servers, denols.servers)
+
+    -- You can add other tools here that you want Mason to install
+    -- for you, so that they are available from within Neovim.
+
+    vim.list_extend(ensure_installed, denols.ensure_installed or {})
+
+    -- Ensure the servers and tools above are installed
+    --  To check the current status of installed tools and/or manually install
+    --  other tools, you can run
+    --    :Mason
+    --
+    --  You can press `g?` for help in this menu.
+    require('mason').setup()
+    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
     ---@diagnostic disable-next-line: missing-fields
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
-          local config = opts[server_name] or {}
-          config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
-          require('lspconfig')[server_name].setup(config)
+          local server = servers[server_name] or {}
+          -- This handles overriding only values explicitly passed
+          -- by the server configuration above. Useful when disabling
+          -- certain features of an LSP (for example, turning off formatting for ts_ls)
+          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          require('lspconfig')[server_name].setup(server)
         end,
       },
     }
