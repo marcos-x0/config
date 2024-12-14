@@ -1,3 +1,17 @@
+-- Utility function to load and merge server configurations
+local function load_server_configs(server_modules)
+  local servers = {}
+  local ensure_installed = {}
+
+  for _, module_name in ipairs(server_modules) do
+    local module = require(module_name)
+    servers = vim.tbl_deep_extend('force', servers, module.servers or {})
+    vim.list_extend(ensure_installed, module.ensure_installed or {})
+  end
+
+  return servers, ensure_installed
+end
+
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
@@ -82,9 +96,49 @@ return {
         --  Similar to document symbols, except searches over your entire project.
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-        -- Rename the variable under your cursor.
-        --  Most Language Servers support renaming across files, etc.
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        -- Define key mappings using the custom map function
+        map('<leader>cr', vim.lsp.buf.rename, 'Rename Symbol')
+
+        map('<leader>cR', function()
+          local old_name = vim.fn.expand '%:p' -- Full path of the current file
+          vim.ui.input({ prompt = 'New file name: ', default = vim.fn.expand '%:t' }, function(new_name)
+            if not new_name or #new_name == 0 then
+              return
+            end
+            local new_path = vim.fn.fnamemodify(old_name, ':h') .. '/' .. new_name
+
+            -- Prepare LSP rename parameters
+            local params = {
+              files = {
+                { oldUri = vim.uri_from_fname(old_name), newUri = vim.uri_from_fname(new_path) },
+              },
+            }
+
+            -- Notify LSP about the planned rename (willRenameFiles)
+            for _, client in pairs(vim.lsp.get_clients()) do
+              if client.supports_method 'workspace/willRenameFiles' then
+                client.request_sync('workspace/willRenameFiles', params)
+              end
+            end
+
+            -- Rename the file
+            vim.fn.rename(old_name, new_path)
+            vim.cmd('e ' .. new_path) -- Open the new file
+
+            -- Close the old buffer
+            local bufnr = vim.fn.bufnr(old_name)
+            if bufnr ~= -1 then
+              vim.cmd('bdelete ' .. bufnr) -- Delete the old buffer
+            end
+
+            -- Notify LSP about the completed rename (didRenameFiles)
+            for _, client in pairs(vim.lsp.get_clients()) do
+              if client.supports_method 'workspace/didRenameFiles' then
+                client.notify('workspace/didRenameFiles', params)
+              end
+            end
+          end)
+        end, 'Rename File')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
@@ -191,24 +245,29 @@ return {
     --   },
     -- }
 
-    local servers = {}
-    -- Load Lua LSP configuration and merge servers
-    local lua_ls = require 'lsp.servers.lua_ls'
-    servers = vim.tbl_deep_extend('force', servers, lua_ls.servers)
+    -- Load server configurations
+    local server_modules = { 'lsp.servers.lua_ls', 'lsp.servers.denols', 'lsp.servers.vstls' }
+    local servers, ensure_installed = load_server_configs(server_modules)
 
-    -- You can add other tools here that you want Mason to install
-    -- for you, so that they are available from within Neovim.
-    local ensure_installed = vim.tbl_keys(servers or {})
-
-    vim.list_extend(ensure_installed, lua_ls.ensure_installed or {})
-
-    local denols = require 'lsp.servers.denols'
-    servers = vim.tbl_deep_extend('force', servers, denols.servers)
-
-    -- You can add other tools here that you want Mason to install
-    -- for you, so that they are available from within Neovim.
-
-    vim.list_extend(ensure_installed, denols.ensure_installed or {})
+    --
+    -- local servers = {}
+    -- -- Load Lua LSP configuration and merge servers
+    -- local lua_ls = require 'lsp.servers.lua_ls'
+    -- servers = vim.tbl_deep_extend('force', servers, lua_ls.servers)
+    --
+    -- -- You can add other tools here that you want Mason to install
+    -- -- for you, so that they are available from within Neovim.
+    -- local ensure_installed = vim.tbl_keys(servers or {})
+    --
+    -- vim.list_extend(ensure_installed, lua_ls.ensure_installed or {})
+    --
+    -- local denols = require 'lsp.servers.denols'
+    -- servers = vim.tbl_deep_extend('force', servers, denols.servers)
+    --
+    -- -- You can add other tools here that you want Mason to install
+    -- -- for you, so that they are available from within Neovim.
+    --
+    -- vim.list_extend(ensure_installed, denols.ensure_installed or {})
 
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install

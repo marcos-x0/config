@@ -4,7 +4,15 @@ return {
     version = '*', -- Use the latest stable version
     config = function()
       -- Setup only `mini.comment` for now
-      require('mini.comment').setup()
+      --
+      -- Setup only `mini.comment` with dynamic commentstring
+      require('mini.comment').setup {
+        options = {
+          custom_commentstring = function()
+            return require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
+          end,
+        },
+      }
 
       -- Better Around/Inside textobjects
       --
@@ -36,5 +44,14 @@ return {
       --   return '%2l:%-2v'
       -- end
     end,
+  },
+
+  -- Add `nvim-ts-context-commentstring` for dynamic commentstring
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    lazy = true, -- Load only when necessary
+    opts = {
+      enable_autocmd = false, -- Disable automatic updates
+    },
   },
 }

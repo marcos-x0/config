@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+-- local opts = { noremap = true, silent = true }
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -18,13 +18,28 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-map({ 'n', 'i' }, '<D-Left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-map({ 'n', 'i' }, '<D-Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-map({ 'n', 'i' }, '<D-Down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-map({ 'n', 'i' }, '<D-Up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+local function navigate_window(direction)
+  return function()
+    if vim.fn.mode() == 'i' then
+      -- Handle Insert mode
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true) -- Temporarily exit Insert mode
+
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>' .. direction, true, false, true), 'n', true) -- Navigate to the target split
+
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('a', true, false, true), 'n', true) -- Re-enter Insert mode
+    else
+      -- Handle Normal mode: Navigate directly
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>' .. direction, true, false, true), 'n', true)
+    end
+  end
+end
+
+-- Keymaps for navigating splits
+vim.keymap.set({ 'n', 'i' }, '<D-Left>', navigate_window 'h', { desc = 'Move focus to the left window' })
+vim.keymap.set({ 'n', 'i' }, '<D-Right>', navigate_window 'l', { desc = 'Move focus to the right window' })
+vim.keymap.set({ 'n', 'i' }, '<D-Down>', navigate_window 'j', { desc = 'Move focus to the lower window' })
+vim.keymap.set({ 'n', 'i' }, '<D-Up>', navigate_window 'k', { desc = 'Move focus to the upper window' })
 -- vscode like keymaps
 -- File Operations
 map({ 'n', 'i', 'v' }, '<D-s>', '<cmd>w<CR>', { desc = 'Save file' }) -- Command + S: Save
