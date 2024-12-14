@@ -246,7 +246,7 @@ return {
     -- }
 
     -- Load server configurations
-    local server_modules = { 'lsp.servers.lua_ls', 'lsp.servers.denols' }
+    local server_modules = { 'lsp.servers.lua_ls', 'lsp.servers.denols', 'lsp.servers.vstls' }
     local servers, ensure_installed = load_server_configs(server_modules)
 
     --

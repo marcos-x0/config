@@ -36,10 +36,10 @@ local function navigate_window(direction)
 end
 
 -- Keymaps for navigating splits
-vim.keymap.set({ 'n', 'i' }, '<D-Left>', navigate_window 'h', { desc = 'Move focus to the left window' })
-vim.keymap.set({ 'n', 'i' }, '<D-Right>', navigate_window 'l', { desc = 'Move focus to the right window' })
-vim.keymap.set({ 'n', 'i' }, '<D-Down>', navigate_window 'j', { desc = 'Move focus to the lower window' })
-vim.keymap.set({ 'n', 'i' }, '<D-Up>', navigate_window 'k', { desc = 'Move focus to the upper window' })
+map({ 'n', 'i' }, '<D-Left>', navigate_window 'h', { desc = 'Move focus to the left window' })
+map({ 'n', 'i' }, '<D-Right>', navigate_window 'l', { desc = 'Move focus to the right window' })
+map({ 'n', 'i' }, '<D-Down>', navigate_window 'j', { desc = 'Move focus to the lower window' })
+map({ 'n', 'i' }, '<D-Up>', navigate_window 'k', { desc = 'Move focus to the upper window' })
 -- vscode like keymaps
 -- File Operations
 map({ 'n', 'i', 'v' }, '<D-s>', '<cmd>w<CR>', { desc = 'Save file' }) -- Command + S: Save
@@ -71,7 +71,8 @@ end, { desc = 'Toggle comment for selected lines' })
 map({ 'n', 'i' }, '<D-S-f>', '<cmd>Telescope live_grep<CR>', { desc = 'Search in workspace' })
 map({ 'n', 'i' }, '<D-p>', '<cmd>Telescope current_buffer_fuzzy_find<CR>', { desc = 'Search in file' })
 
-map('n', '<F2>', ':IncRename ')
+map('n', '<leader>rs', ':IncRename ', { desc = 'Replace Symbol' })
+map('n', '<F2>', ':IncRename ', { desc = 'Replace Symbol' })
 
 -- map('n', '<leader>e', function()
 --   vim.cmd('Neotree reveal source=filesystem position=float dir=' .. vim.fn.getcwd())

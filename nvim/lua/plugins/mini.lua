@@ -3,8 +3,6 @@ return {
     'echasnovski/mini.nvim',
     version = '*', -- Use the latest stable version
     config = function()
-      -- Setup only `mini.comment` for now
-      --
       -- Setup only `mini.comment` with dynamic commentstring
       require('mini.comment').setup {
         options = {
@@ -29,20 +27,18 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- -- Simple and easy statusline.
-      -- --  You could remove this setup call if you don't like it,
-      -- --  and try some other statusline plugin
-      -- local statusline = require 'mini.statusline'
-      -- -- set use_icons to true if you have a Nerd Font
-      -- statusline.setup { use_icons = vim.g.have_nerd_font }
-      --
-      -- -- You can configure sections in the statusline by overriding their
-      -- -- default behavior. For example, here we set the section for
-      -- -- cursor location to LINE:COLUMN
-      -- ---@diagnostic disable-next-line: duplicate-set-field
-      -- statusline.section_location = function()
-      --   return '%2l:%-2v'
-      -- end
+      -- the idea of move is nice, but it doesnt do what is expected.
+      -- can just dd the block and move  to the proper place and past there
+
+      -- Setup `mini.move` with directional arrow keys
+      -- require('mini.move').setup {
+      --   mappings = {
+      --     left = '<M-Left>',
+      --     right = '<M-Right>',
+      --     down = '<M-Down>',
+      --     up = '<M-Up>',
+      --   },
+      -- }
     end,
   },
 
