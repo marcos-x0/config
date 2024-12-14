@@ -69,6 +69,9 @@ return {
       },
     },
     config = function(_, opts)
+      -- Ensure providers table exists
+      opts.sources.providers = opts.sources.providers or {}
+
       -- Setup compatibility sources
       local enabled = opts.sources.default
       for _, source in ipairs(opts.sources.compat or {}) do
