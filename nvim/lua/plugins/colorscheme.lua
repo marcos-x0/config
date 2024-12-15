@@ -48,6 +48,19 @@ return {
         highlights['@boolean'] = artic_ocean
 
         highlights['@number'] = orange
+
+        -- Add BlinkCmpKind highlights for all kinds
+        for _, kind in ipairs(require('blink.cmp.types').CompletionItemKind) do
+          highlights['BlinkCmpKind' .. kind] = {
+            fg = colors.polar_night.light,
+            bg = colors.snow_storm.origin, -- Black foreground
+          }
+        end
+
+        highlights['BlinkCmpMenuSelection'] = {
+          bg = colors.polar_night.light,
+          fg = colors.snow_storm.origin, -- Black foreground
+        }
       end,
     }
 

@@ -1,136 +1,92 @@
 return {
   {
-    'hrsh7th/nvim-cmp',
-    optional = true,
-    enabled = false,
-  },
-  {
     'saghen/blink.cmp',
-    version = '*', -- Replace with the desired version, "*" for the latest stable
-    build = 'cargo build --release', -- Adjust if using a pre-built version
-    opts_extend = {
-      'sources.completion.enabled_providers',
-      'sources.compat',
-      'sources.default',
-    },
+    version = '*',
+    build = 'cargo build --release',
     dependencies = {
-      'rafamadriz/friendly-snippets',
-      'onsails/lspkind.nvim', -- Add lspkind for icons
-      {
-        'saghen/blink.compat',
-        optional = true, -- Optional dependency
-        opts = {},
-        version = '*', -- Latest stable version
-      },
+      'L3MON4D3/LuaSnip', -- Snippet engine
+      'rafamadriz/friendly-snippets', -- Predefined snippets
+      { 'saghen/blink.compat', version = '*' }, -- Compatibility layer
     },
     event = 'InsertEnter',
     opts = {
       appearance = {
-        use_nvim_cmp_as_default = false, -- Fallback highlights
-        nerd_font_variant = 'mono', -- Adjust spacing for Nerd Font Mono
+        nerd_font_variant = 'mono',
+        kind_icons = {
+          Text = '',
+          Method = '',
+          Function = '',
+          Constructor = '',
+          Field = '',
+          Variable = '',
+          Class = '',
+          Interface = '',
+          Module = '',
+          Property = '',
+          Unit = '',
+          Value = '',
+          Enum = '',
+          Keyword = '',
+          Snippet = '',
+          Color = '',
+          File = '',
+          Reference = '',
+          Folder = '',
+          EnumMember = '',
+          Constant = '',
+          Struct = '',
+          Event = '',
+          Operator = '',
+          TypeParameter = '',
+        },
       },
       completion = {
-        accept = {
-          auto_brackets = {
-            enabled = true, -- Enable auto-brackets
-          },
-        },
-        menu = {
-          draw = {
-            treesitter = { 'lsp' }, -- Use treesitter for better menus
-          },
-        },
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
         },
         ghost_text = {
-          enabled = vim.g.ai_cmp, -- Enable based on global variable
+          enabled = false,
         },
       },
       sources = {
-        compat = {},
+        compat = { 'luasnip' },
         default = { 'lsp', 'path', 'snippets', 'buffer' },
-        cmdline = {},
-      },
-      keymap = {
-        preset = 'enter', -- Default preset
-        ['<C-y>'] = { 'select_and_accept' },
-        ['<Tab>'] = {
-          function()
-            -- Define a fallback function for <Tab>
-            if vim.fn.pumvisible() == 1 then
-              return vim.api.nvim_replace_termcodes('<C-n>', true, true, true)
-            else
-              return vim.api.nvim_replace_termcodes('<Tab>', true, true, true)
-            end
-          end,
-        },
       },
     },
     config = function(_, opts)
-      -- Ensure providers table exists
-      opts.sources.providers = opts.sources.providers or {}
+      require('luasnip.loaders.from_vscode').lazy_load()
 
-      -- Setup compatibility sources
-      local enabled = opts.sources.default
-      for _, source in ipairs(opts.sources.compat or {}) do
-        opts.sources.providers[source] = vim.tbl_deep_extend('force', { name = source, module = 'blink.compat.source' }, opts.sources.providers[source] or {})
-        if type(enabled) == 'table' and not vim.tbl_contains(enabled, source) then
-          table.insert(enabled, source)
-        end
-      end
+      local cmp = require 'blink.cmp'
 
-      -- Enable completion providers
-      if not opts.sources.completion then
-        opts.sources.completion = {}
-      end
-      opts.sources.completion.enabled_providers = enabled
+      -- Ensure no item is automatically selected
+      opts.completion = opts.completion or {}
+      opts.completion.selection = nil -- This prevents default selection of the first item
 
-      -- Unset custom properties for validation
-      opts.sources.compat = nil
+      opts.completion.behavior = 'replace' -- Ensure full word replacement on confirm
 
-      -- Handle symbol kinds
-      for _, provider in pairs(opts.sources.providers or {}) do
-        if provider.kind then
-          local CompletionItemKind = require('blink.cmp.types').CompletionItemKind
-          local kind_idx = #CompletionItemKind + 1
-          CompletionItemKind[kind_idx] = provider.kind
-          CompletionItemKind[provider.kind] = kind_idx
+      opts.keymap = {
 
-          local transform_items = provider.transform_items
-          provider.transform_items = function(ctx, items)
-            items = transform_items and transform_items(ctx, items) or items
-            for _, item in ipairs(items) do
-              item.kind = kind_idx or item.kind
-            end
-            return items
-          end
+        -- Tab to move to the next item
+        ['<Tab>'] = { 'select_next', 'fallback' },
 
-          provider.kind = nil
-        end
-      end
+        -- Shift-Tab to move to the previous item
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
 
-      -- Final Blink configuration
-      require('blink.cmp').setup(opts)
+        -- Enter to confirm the selection
+        ['<C-CR>'] = {
+          'accept',
+          function()
+            cmp.hide() -- Explicitly hide the dropdown
+          end,
+          'fallback',
+        },
+
+        -- Enter to confirm the selection
+      }
+
+      -- Setup Blink with the updated opts
+      cmp.setup(opts)
     end,
-  },
-  -- Icons support
-  {
-    'saghen/blink.cmp',
-    opts = function(_, opts)
-      opts.appearance = opts.appearance or {}
-      opts.appearance.kind_icons = vim.tbl_extend('keep', {
-        Color = '██', -- Use block for color items
-      }, require('lspkind').presets.default) -- Use lspkind for icons
-    end,
-  },
-  -- Catppuccin theme integration
-  {
-    'catppuccin',
-    optional = true,
-    opts = {
-      integrations = { blink_cmp = true },
-    },
   },
 }
