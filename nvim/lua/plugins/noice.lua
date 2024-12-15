@@ -6,7 +6,9 @@ return {
     'rcarriga/nvim-notify', -- Optional: For notifications
   },
   config = function()
-    require('noice').setup {
+    local noice = require 'noice'
+
+    noice.setup {
       messages = {
         view = 'notify', -- Route messages to `nvim-notify` for enhanced display
       },
@@ -34,6 +36,11 @@ return {
         inc_rename = true,
       },
     }
+
+    vim.keymap.set('n', '<leader>nd', function()
+      noice.cmd 'dismiss'
+    end, { desc = 'Dismiss all Noice notifications' })
+
     -- Set `nvim-notify` as the default notification provider
     vim.notify = require 'notify'
   end,

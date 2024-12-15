@@ -27,6 +27,7 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      require('mini.pairs').setup()
       -- the idea of move is nice, but it doesnt do what is expected.
       -- can just dd the block and move  to the proper place and past there
 

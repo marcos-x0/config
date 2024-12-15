@@ -49,6 +49,9 @@ return {
 
         highlights['@number'] = orange
 
+        -- Add a custom highlight for the indent scope
+        highlights['IndentScopeHighlight'] = { fg = colors.polar_night.lighter, bold = true }
+
         -- Add BlinkCmpKind highlights for all kinds
         for _, kind in ipairs(require('blink.cmp.types').CompletionItemKind) do
           highlights['BlinkCmpKind' .. kind] = {
