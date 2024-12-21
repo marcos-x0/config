@@ -2,74 +2,116 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 --
-vim.keymap.set("n", "<M-C-Left>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-vim.keymap.set("n", "<M-C-Down>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-vim.keymap.set("n", "<M-C-Up>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-vim.keymap.set("n", "<M-C-Right>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+local map = vim.keymap.set
 
--- -- Key mapping to format the line legth to vim.opt.textwidth
-vim.keymap.set("n", "<leader>cb", "ggVGgq", { noremap = true, silent = true, desc = "Format buffer to 80 columns" })
-vim.keymap.set(
+-- Key mapping to format the line legth to vim.opt.textwidth
+map("n", "<leader>cb", "ggVGgq", { noremap = true, silent = true, desc = "Format buffer to 80 columns" })
+map(
   "n",
   "<leader>r",
   "<cmd>Telescope oldfiles cwd_only=true<CR>",
   { desc = "Open recent files in cwd", noremap = true, silent = true }
 )
 
-vim.keymap.set("n", "<leader>e", function()
+map("n", "<leader>e", function()
   vim.cmd("Neotree reveal source=filesystem position=float dir=" .. vim.fn.getcwd())
 end)
 
---
--- vim.keymap.set("n", "<leader>e", function()
---   vim.cwd("Neotree reveal source=filesystem position=float dir=" .. vim.fn.getcwd())
--- end, { desc = "Open Neo-tree at project root and reveal currwnt buffer file" })
+-- Keybinds to make split navigation easier.
+local function navigate_window(direction)
+  return function()
+    if vim.fn.mode() == "i" then
+      -- Handle Insert mode
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true) -- Temporarily exit Insert mode
+
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>" .. direction, true, false, true), "n", true) -- Navigate to the target split
+
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("a", true, false, true), "n", true) -- Re-enter Insert mode
+    else
+      -- Handle Normal mode: Navigate directly
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>" .. direction, true, false, true), "n", true)
+    end
+  end
+end
+
+-- Keymaps for navigating splits
+map({ "n", "i" }, "<D-Left>", navigate_window("h"), { desc = "Move focus to the left window" })
+map({ "n", "i" }, "<D-Right>", navigate_window("l"), { desc = "Move focus to the right window" })
+map({ "n", "i" }, "<D-Down>", navigate_window("j"), { desc = "Move focus to the lower window" })
+map({ "n", "i" }, "<D-Up>", navigate_window("k"), { desc = "Move focus to the upper window" })
+
+map("x", ">", ">gv", { silent = true, desc = "Indent", noremap = true })
+map("x", "<", "< gv", { silent = true, desc = "Indent", noremap = true })
+
+-- vscode like keymaps
+-- File Operations
+map({ "n", "i", "v" }, "<D-s>", "<cmd>w<CR>", { desc = "Save file" }) -- Command + S: Save
+map({ "n", "i", "v" }, "<D-S-s>", "<cmd>wa<CR>", { desc = "Save all files" }) -- Command + Shift + S: Save all
+-- map({ 'n', 'i' }, '<D-q>', '<cmd>q<CR>', { desc = 'Quit' }) -- Command + Q: Quit
+
+map({ "n", "i" }, "<D-S-q>", "<cmd>q!<CR>", { desc = "Force quit" }) -- Command + Shift + Q: Force quit
+map({ "n", "i" }, "<D-p>", "<cmd>Telescope find_files<CR>", { desc = "Find files" }) -- Command + P: Find files
+
+-- Navigation
+map({ "n", "i", "v" }, "<D-S-f>", "<cmd>Telescope live_grep<CR>", { desc = "Search in workspace" }) -- Command + Shift + F: Search workspace
+map({ "n", "i", "v" }, "<D-/>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Search in file" }) -- Command + /: Search in file
+
+-- Split Management
+map({ "n", "i" }, "<D-S-\\>", "<cmd>vsplit<CR>", { desc = "Split window vertically" }) -- Command + \: Vertical split
+map({ "n", "i" }, "<D-S-->", "<cmd>split<CR>", { desc = "Split window horizontally" }) -- Command + |: Horizontal split
+
+-- Toggling comments (like VSCode's Command + /)
+map({ "n", "i" }, "<D-/>", function()
+  require("mini.comment").toggle_lines(vim.fn.line("."), vim.fn.line("."))
+end, { desc = "Toggle comment" })
+
+map("x", "<D-/>", function()
+  -- Call the operator for visual selections
+  require("mini.comment").toggle_lines(vim.fn.line("v"), vim.fn.line("."))
+end, { desc = "Toggle comment for selected lines" })
+
+map("x", "<leader>r", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", { desc = "Replace selected text" })
 
 -- Primeagen's keymaps
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted block up" })
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block down" })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move highlighted block up" })
 
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and maintain cursor position" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down half-page and center cursor" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up half-page and center cursor" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result and center cursor" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result and center cursor" })
---vim.keymap.set('n', '<leader>zig', '<cmd>LspRestart<cr>', { desc = 'Restart LSP server' })
+map("n", "J", "mzJ`z", { desc = "Join lines and maintain cursor position" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down half-page and center cursor" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up half-page and center cursor" })
+map("n", "n", "nzzzv", { desc = "Next search result and center cursor" })
+map("n", "N", "Nzzzv", { desc = "Previous search result and center cursor" })
+--map('n', '<leader>zig', '<cmd>LspRestart<cr>', { desc = 'Restart LSP server' })
 
 -- -- greatest remap ever
-vim.keymap.set("x", "<localleader>p", [["_dP]], { desc = "Paste without overwriting register" })
+map("x", "<localleader>p", [["_dP]], { desc = "Paste without overwriting register" })
 
 -- next greatest remap ever
-vim.keymap.set({ "n", "v" }, "<localleader>y", [["+y]], { desc = "Yank to system clipboard" })
-vim.keymap.set("n", "<localleader>Y", [["+Y]], { desc = "Yank entire line to system clipboard" })
+map({ "n", "v" }, "<localleader>y", [["+y]], { desc = "Yank to system clipboard" })
+map("n", "<localleader>Y", [["+Y]], { desc = "Yank entire line to system clipboard" })
 
---vim.keymap.set({ "n", "v" }, "<localleader>d", [["_d]], { desc = "Delete to black hole register" })
+--map({ "n", "v" }, "<localleader>d", [["_d]], { desc = "Delete to black hole register" })
 
 -- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Map Ctrl-c to escape in insert mode" })
+map("i", "<C-c>", "<Esc>", { desc = "Map Ctrl-c to escape in insert mode" })
 
-vim.keymap.set("n", "<localleader>f", vim.lsp.buf.format, { desc = "Format file with LSP" })
+map("n", "<localleader>f", vim.lsp.buf.format, { desc = "Format file with LSP" })
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Go to next quickfix item and center cursor" })
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix item and center cursor" })
-vim.keymap.set("n", "<localleader>k", "<cmd>lnext<CR>zz", { desc = "Go to next location list item and center cursor" })
-vim.keymap.set(
-  "n",
-  "<localleader>j",
-  "<cmd>lprev<CR>zz",
-  { desc = "Go to previous location list item and center cursor" }
-)
+map("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Go to next quickfix item and center cursor" })
+map("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix item and center cursor" })
+map("n", "<localleader>k", "<cmd>lnext<CR>zz", { desc = "Go to next location list item and center cursor" })
+map("n", "<localleader>j", "<cmd>lprev<CR>zz", { desc = "Go to previous location list item and center cursor" })
 
-vim.keymap.set(
+map(
   "n",
   "<localleader>s",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "Replace current word under cursor" }
 )
-vim.keymap.set("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
+map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 
--- vim.keymap.set(
+-- map(
 --   "n",
 --   "<localleader>ee",
 --   "oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
