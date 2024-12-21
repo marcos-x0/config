@@ -4,6 +4,10 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
   },
+  keys = {
+    { "\\", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
+  },
+
   opts = {
     popup_border_style = "rounded",
     window = {
@@ -50,6 +54,9 @@ return {
       use_libuv_file_watcher = true,
       window = {
         preview = true, -- Enables file preview
+        mappings = {
+          ["\\"] = "close_window",
+        },
       },
     },
     preview = {

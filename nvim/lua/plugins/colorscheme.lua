@@ -62,6 +62,13 @@ return {
       colorscheme = { "nord" },
     },
   },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "nord",
+    },
+  },
+
   -- "tokyonight.nvim",
   -- opts = {
   --   -- transparent = true,
