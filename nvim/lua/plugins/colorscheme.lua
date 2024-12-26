@@ -53,6 +53,26 @@ return {
           highlights["@boolean"] = artic_ocean
 
           highlights["@number"] = orange
+          -- FZF-Lua highlight group overrides
+          -- highlights.FzfLuaNormal = { link = "TelescopeNormal" }
+          -- highlights.FzfLuaNormal = yellow
+
+          highlights.FzfLuaBorder = polar_night -- { link = "TelescopeBorder" }
+          highlights.FzfLuaTitle = artic_water -- { link = "TelescopeTitle" }
+
+          highlights.BlinkCmpDocBorder = polar_night
+          -- highlights.FzfLuaPreviewNormal = { link = "TelescopePreviewNormal" }
+          -- highlights.FzfLuaPreviewBorder = artic_water -- { link = "TelescopePreviewBorder" }
+          -- highlights.FzfLuaPreviewTitle = { link = "TelescopePreviewTitle" }
+          -- highlights.FzfLuaCursor = { link = "TelescopeSelection" }
+          -- highlights.FzfLuaCursorLine = { link = "TelescopeSelectionCaret" }
+          -- highlights.FzfLuaSearch = { link = "TelescopeMatching" }
+          -- highlights.FzfLuaResultsNormal = { link = "TelescopeResultsNormal" }
+          -- highlights.FzfLuaResultsBorder = { link = "TelescopeResultsBorder" }
+          -- highlights.FzfLuaResultsTitle = { link = "TelescopeResultsTitle" }
+          -- highlights.FzfLuaPromptNormal = { link = "TelescopePromptNormal" }
+          -- highlights.FzfLuaPromptBorder = { link = "TelescopePromptBorder" }
+          -- highlights.FzfLuaPromptPrefix = { link = "TelescopePromptPrefix" }
         end,
       })
 
