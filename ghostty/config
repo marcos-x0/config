@@ -1,0 +1,14 @@
+theme=nord
+
+background-opacity=1
+
+background=#212632
+selection-foreground=#D8DEE9
+selection-background=#7E8CA7
+unfocused-split-fill=#2E3440
+
+#font-family="IosevkaMgjTerm Nerd Font"
+#window-decoration = false
+window-padding-x = 8 
+window-padding-y = 8
+macos-titlebar-style = hidden
