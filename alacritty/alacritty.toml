@@ -10,11 +10,10 @@ dynamic_title = false
 title = ""
 
 [font]
-# normal = { family = "VictorMono Nerd Font", style = "Bold Italic" }
 normal = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended" }
 bold = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended Bold" }
-italic = { family = "VictorMono Nerd Font", style = "Italic" }
-bold_italic = { family = "VictorMono Nerd Font", style = "Bold Italic" }
+italic = { family = "IosevkaTerm Nerd Font", style = "Italic" }
+bold_italic = { family = "IosevkaTerm Nerd Font", style = "Bold Italic" }
 size = 12.0
 
 [scrolling]
