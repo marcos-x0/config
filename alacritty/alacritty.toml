@@ -12,8 +12,8 @@ title = ""
 [font]
 normal = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended" }
 bold = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended Bold" }
-italic = { family = "IosevkaMgjTerm Nerd Font", style = "Italic" }
-bold_italic = { family = "IosevkaMgjTerm Nerd Font", style = "Bold Italic" }
+italic = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended Italic" }
+bold_italic = { family = "IosevkaMgjTerm Nerd Font", style = "SemiExtended Bold Italic" }
 size = 12.0
 
 [scrolling]

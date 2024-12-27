@@ -37,6 +37,7 @@ with pkgs;
       fonts = [
         "JetBrainsMono"
         "VictorMono"
+        "NerdFontsSymbolsOnly"
       ];
     })
 
