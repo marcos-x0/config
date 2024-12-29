@@ -35,10 +35,10 @@ local function navigate_window(direction)
 end
 
 -- Keymaps for navigating splits
-map({ "n", "i" }, "<D-Left>", navigate_window("h"), { desc = "Move focus to the left window" })
-map({ "n", "i" }, "<D-Right>", navigate_window("l"), { desc = "Move focus to the right window" })
-map({ "n", "i" }, "<D-Down>", navigate_window("j"), { desc = "Move focus to the lower window" })
-map({ "n", "i" }, "<D-Up>", navigate_window("k"), { desc = "Move focus to the upper window" })
+map({ "n", "i" }, "<M-Left>", navigate_window("h"), { desc = "Move focus to the left window" })
+map({ "n", "i" }, "<M-Right>", navigate_window("l"), { desc = "Move focus to the right window" })
+map({ "n", "i" }, "<M-Down>", navigate_window("j"), { desc = "Move focus to the lower window" })
+map({ "n", "i" }, "<M-Up>", navigate_window("k"), { desc = "Move focus to the upper window" })
 
 map("x", ">", ">gv", { silent = true, desc = "Indent", noremap = true })
 map("x", "<", "< gv", { silent = true, desc = "Indent", noremap = true })
@@ -57,8 +57,8 @@ map({ "n", "i", "v" }, "<D-S-f>", "<cmd>Telescope live_grep<CR>", { desc = "Sear
 map({ "n", "i", "v" }, "<D-/>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Search in file" }) -- Command + /: Search in file
 
 -- Split Management
-map({ "n", "i" }, "<D-S-\\>", "<cmd>vsplit<CR>", { desc = "Split window vertically" }) -- Command + \: Vertical split
-map({ "n", "i" }, "<D-S-->", "<cmd>split<CR>", { desc = "Split window horizontally" }) -- Command + |: Horizontal split
+map({ "n", "i" }, "<M--\\>", "<cmd>vsplit<CR>", { desc = "Split window vertically" }) -- Command + \: Vertical split
+map({ "n", "i" }, "<M-->", "<cmd>split<CR>", { desc = "Split window horizontally" }) -- Command + |: Horizontal split
 
 -- Toggling comments (like VSCode's Command + /)
 map({ "n", "i" }, "<D-/>", function()
