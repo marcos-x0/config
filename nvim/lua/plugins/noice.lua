@@ -8,5 +8,7 @@ return {
         require("noice").notify(string.format("%s", filename), "info", { title = "Saved" })
       end,
     })
+
+    opts.presets.lsp_doc_border = true
   end,
 }
