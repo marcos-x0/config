@@ -6,12 +6,16 @@ local map = vim.keymap.set
 
 -- Key mapping to format the line legth to vim.opt.textwidth
 map("n", "<leader>cb", "ggVGgq", { noremap = true, silent = true, desc = "Format buffer to 80 columns" })
-map(
-  "n",
-  "<leader>r",
-  "<cmd>Telescope oldfiles cwd_only=true<CR>",
-  { desc = "Open recent files in cwd", noremap = true, silent = true }
-)
+-- map(
+--   "n",
+--   "<leader>r",
+--   "<cmd>Telescope oldfiles cwd_only=true<CR>",
+--   { desc = "Open recent files in cwd", noremap = true, silent = true }
+-- )
+
+vim.keymap.set("n", "<leader>rn", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
 
 map("n", "<leader>e", function()
   vim.cmd("Neotree reveal source=filesystem position=float dir=" .. vim.fn.getcwd())
@@ -49,12 +53,12 @@ map({ "n", "i", "v" }, "<D-s>", "<cmd>w<CR>", { desc = "Save file" }) -- Command
 map({ "n", "i", "v" }, "<D-S-s>", "<cmd>wa<CR>", { desc = "Save all files" }) -- Command + Shift + S: Save all
 -- map({ 'n', 'i' }, '<D-q>', '<cmd>q<CR>', { desc = 'Quit' }) -- Command + Q: Quit
 
-map({ "n", "i" }, "<D-S-q>", "<cmd>q!<CR>", { desc = "Force quit" }) -- Command + Shift + Q: Force quit
-map({ "n", "i" }, "<D-p>", "<cmd>Telescope find_files<CR>", { desc = "Find files" }) -- Command + P: Find files
-
--- Navigation
-map({ "n", "i", "v" }, "<D-S-f>", "<cmd>Telescope live_grep<CR>", { desc = "Search in workspace" }) -- Command + Shift + F: Search workspace
-map({ "n", "i", "v" }, "<D-/>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Search in file" }) -- Command + /: Search in file
+-- map({ "n", "i" }, "<D-S-q>", "<cmd>q!<CR>", { desc = "Force quit" }) -- Command + Shift + Q: Force quit
+-- map({ "n", "i" }, "<D-p>", "<cmd>Telescope find_files<CR>", { desc = "Find files" }) -- Command + P: Find files
+--
+-- -- Navigation
+-- map({ "n", "i", "v" }, "<D-S-f>", "<cmd>Telescope live_grep<CR>", { desc = "Search in workspace" }) -- Command + Shift + F: Search workspace
+-- map({ "n", "i", "v" }, "<D-/>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Search in file" }) -- Command + /: Search in file
 
 -- Split Management
 map({ "n", "i" }, "<M--\\>", "<cmd>vsplit<CR>", { desc = "Split window vertically" }) -- Command + \: Vertical split
