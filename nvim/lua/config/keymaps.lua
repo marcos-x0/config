@@ -70,8 +70,15 @@ map({ "n", "i" }, "<D-/>", function()
 end, { desc = "Toggle comment" })
 
 map("x", "<D-/>", function()
-  -- Call the operator for visual selections
-  require("mini.comment").toggle_lines(vim.fn.line("v"), vim.fn.line("."))
+  -- Get the start and end lines of the visual selection
+  local line_start = vim.fn.line("v")
+  local line_end = vim.fn.line(".")
+  -- Ensure line_start is less than or equal to line_end
+  if line_start > line_end then
+    line_start, line_end = line_end, line_start
+  end
+  -- Call the operator for the adjusted line range
+  require("mini.comment").toggle_lines(line_start, line_end)
 end, { desc = "Toggle comment for selected lines" })
 
 map("x", "<leader>r", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", { desc = "Replace selected text" })
