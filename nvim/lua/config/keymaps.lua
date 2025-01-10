@@ -13,6 +13,20 @@ map("n", "<leader>cb", "ggVGgq", { noremap = true, silent = true, desc = "Format
 --   { desc = "Open recent files in cwd", noremap = true, silent = true }
 -- )
 
+-- vim.keymap.set("n", "<leader>ll", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+
+vim.keymap.set("n", "<leader>ll", function()
+  ---@diagnostic disable-next-line: undefined-field
+  local current = vim.diagnostic.config().virtual_lines
+
+  vim.diagnostic.config({ virtual_lines = not current })
+  if not current then
+    vim.notify("Lsp lines enabled", vim.log.levels.INFO)
+  else
+    vim.notify("Lsp lines disabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle lsp_lines" })
+
 vim.keymap.set("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
