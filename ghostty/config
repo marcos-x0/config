@@ -6,7 +6,7 @@
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint
 
-font-family                    = Symbols Nerd Font Mono
+# font-family                    = Symbols Nerd Font Mono
 font-family                    = Iosevka Mgj Mono
 # window-title-font-family       = Iosevka Mgj Mono
 
@@ -39,8 +39,11 @@ window-padding-y = 8
 
 
 # Other
-clipboard-paste-protection     = true
+clipboard-paste-protection     = false
 clipboard-trim-trailing-spaces = true
+clipboard-read                 = allow
+clipboard-write                = allow
+
 #copy-on-select                 = true
 macos-auto-secure-input        = true
 macos-secure-input-indication  = true
