@@ -13,7 +13,8 @@ return {
             brighter = "#3B4252",
             brightest = "#434C5E",
             light = "#4C566A",
-            lighter = "#7e8ca7",
+            lighter = "#5A6984",
+            lightest = "#7e8ca7",
           }
         end,
 
@@ -24,7 +25,11 @@ return {
           local orange = vim.tbl_extend("force", { fg = colors.aurora.orange }, {})
 
           local storm = vim.tbl_extend("force", { fg = colors.snow_storm.origin }, { bold = true })
-          local polar_night = vim.tbl_extend("force", { fg = colors.polar_night.light }, { bold = true, italic = true })
+          local polar_night = vim.tbl_extend(
+            "force",
+            { fg = colors.polar_night.lighter },
+            { bold = true, italic = true }
+          )
 
           local artic_water = vim.tbl_extend("force", { fg = colors.frost.artic_water }, {})
           local italic_artic_water = vim.tbl_extend(
