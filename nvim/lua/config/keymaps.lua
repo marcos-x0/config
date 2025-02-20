@@ -97,6 +97,10 @@ end, { desc = "Toggle comment for selected lines" })
 
 map("x", "<leader>r", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", { desc = "Replace selected text" })
 
+map("n", "<leader>hp", function()
+  require("gitsigns").preview_hunk()
+end, { desc = "Preview Git Hunk" })
+
 -- Primeagen's keymaps
 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block down" })
