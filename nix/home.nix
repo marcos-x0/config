@@ -164,6 +164,7 @@ in
   home.file.".zshenv".text = builtins.readFile ../zsh/zshenv;
   home.file.".zshrc".text = builtins.readFile ../zsh/zshrc;
   home.file.".zprofile".text = builtins.readFile ../zsh/zprofile;
+  home.file.".gitconfig".text = builtins.readFile ../git/gitconfig;
 
   # '';
   home.activation =
