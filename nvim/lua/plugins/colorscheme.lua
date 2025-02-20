@@ -19,6 +19,8 @@ return {
         end,
 
         on_highlights = function(highlights, colors)
+          local green = vim.tbl_extend("force", { fg = "#c1d3b2", bg = "#415430" }, {})
+          local red = vim.tbl_extend("force", { fg = "#d4959b", bg = "#662a2f" }, {})
           local purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, {})
           -- local unterline_purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, { underline = true })
           local yellow = vim.tbl_extend("force", { fg = colors.aurora.yellow }, {})
@@ -64,6 +66,9 @@ return {
 
           highlights.FzfLuaBorder = polar_night -- { link = "TelescopeBorder" }
           highlights.FzfLuaTitle = artic_water -- { link = "TelescopeTitle" }
+
+          highlights.GitSignsDeleteInline = red
+          highlights.GitSignsAddInline = green
 
           highlights.BlinkCmpDocBorder = polar_night
           -- highlights.FzfLuaPreviewNormal = { link = "TelescopePreviewNormal" }
