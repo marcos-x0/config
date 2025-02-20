@@ -10,14 +10,20 @@ curl \
   --tlsv1.2 \
   -sSf \
   -L https://install.determinate.systems/nix \
-  | sh -s -- install
+  | sh -s -- install --determinate
 
 ```
 
 ## installing nix-darwin
 
 ```bash
-nix run nix-darwin -- switch --flake ~/.config/nix
+sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
+sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
+sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
+
+nix --extra-experimental-features nix-command \
+  --extra-experimental-features flakes \
+  run nix-darwin -- switch --flake ~/.config/nix
 ```
 
 ## #NOTE
