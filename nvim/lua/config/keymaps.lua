@@ -101,6 +101,16 @@ map("n", "<leader>hp", function()
   require("gitsigns").preview_hunk()
 end, { desc = "Preview Git Hunk" })
 
+vim.keymap.set("v", "<leader>cf", function()
+  -- Run Conform.nvim formatting
+  require("conform").format({
+    async = true,
+    lsp_fallback = true,
+  })
+  -- Re-indent selected block
+  vim.cmd("normal! =")
+end, { desc = "Format with ESLint & Prettier and fix indentation" })
+
 -- Primeagen's keymaps
 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block down" })
