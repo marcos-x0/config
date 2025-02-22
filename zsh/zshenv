@@ -68,6 +68,8 @@ alias cp='cp -R'
 alias ps='ps -e'
 alias cl='clear'
 
+alias cfg="cd ~/.config && nvim; cd -"
+
 # update config repo and update nix-darwin
 # alias n-up="cur=$PWD &&cd ~/.config/ && git add . && git commit -a --amend --no-edit && darwin-rebuild switch --flake ~/.config/nix && cd $cur"
 alias n-up="darwin-rebuild switch --flake ~/.config/nix"
