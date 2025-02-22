@@ -104,9 +104,15 @@ end, { desc = "Preview Git Hunk" })
 vim.keymap.set("v", "<leader>cf", function()
   -- Run Conform.nvim formatting
   require("conform").format({
-    async = true,
+    async = false,
     lsp_fallback = true,
   })
+
+  require("conform").format({
+    async = false,
+    lsp_fallback = true,
+  })
+
   -- Re-indent selected block
   vim.cmd("normal! =")
 end, { desc = "Format with ESLint & Prettier and fix indentation" })
