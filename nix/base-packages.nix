@@ -30,6 +30,8 @@ with pkgs;
     zsh-autosuggestions
     lsd
     jq
+    yq
+    jujutsu
     jqp
     lazygit
     ripgrep
