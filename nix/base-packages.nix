@@ -31,7 +31,6 @@ with pkgs;
     lsd
     jq
     yq
-    jujutsu
     jqp
     lazygit
     ripgrep
