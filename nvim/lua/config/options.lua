@@ -6,6 +6,9 @@ vim.opt.colorcolumn = "80"
 vim.opt.textwidth = 79
 vim.g.snacks_animate = false
 
+vim.opt.relativenumber = false
+vim.opt.number = true
+
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
