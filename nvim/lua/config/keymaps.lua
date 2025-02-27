@@ -117,6 +117,10 @@ vim.keymap.set("v", "<leader>cf", function()
   vim.cmd("normal! =")
 end, { desc = "Format with ESLint & Prettier and fix indentation" })
 
+map("n", "<leader>'", function()
+  require("fzf-lua").resume()
+end, { desc = "Resume fzf-lua" })
+
 -- Primeagen's keymaps
 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move highlighted block down" })
