@@ -1,0 +1,50 @@
+module_separator = " "
+
+[bookmarks]
+exclude = []
+
+[[module]]
+type = "Bookmarks"
+separator = ""
+color = "Magenta"
+behind_symbol = "▲"
+
+[[module]]
+type = "Commit"
+max_length = 24
+
+[[module]]
+type = "State"
+separator = " "
+
+[module.conflict]
+text = "(CONFLICT)"
+color = "Red"
+
+[module.divergent]
+text = "(DIVERGENT)"
+color = "Cyan"
+
+[module.hidden]
+text = "(HIDDEN)"
+color = "Yellow"
+
+[[module]]
+type = "Metrics"
+template = "[{changed} {added} {removed}]"
+color = "Magenta"
+
+[module.changed_files]
+prefix = ""
+suffix = ""
+color = "Cyan"
+
+[module.added_lines]
+prefix = "+"
+suffix = ""
+color = "Green"
+
+[module.removed_lines]
+prefix = "-"
+suffix = ""
+color = "Red"
