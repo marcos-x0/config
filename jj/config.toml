@@ -1,0 +1,21 @@
+diff-editor = "dif diff"
+
+[user]
+name = "marcox-x0"
+email = "56_despots_parsnip@icloud.com"
+
+[ui]
+pager = "delta"
+default-command = ["log", "-r", "(::@ | @::) ~(::main)-"]
+conflict-marker-style = "git"
+diff-editor = ":builtin"
+
+[aliases]
+l = ["log"]
+e = ["edit"]
+d = ["describe", "-m"]
+u = ["undo"]
+
+[merge-tool.git]
+program = "git"
+args = ["merge-file", "--diff3", "$left", "$base", "$right", "-p"]
