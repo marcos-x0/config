@@ -5,9 +5,9 @@ $hostname\
 $git_metrics\
 $directory\
 ${custom.jj}\
-$git_branch\
-$git_state\
-$git_status\
+${custom.git_branch}\
+${custom.git_state}\
+${custom.git_status}\
 $cmd_duration\
 $line_break\
 $python\
@@ -16,18 +16,22 @@ $character"""
 
 [directory]
 style = "blue"
+truncation_length = 0
+truncate_to_repo = true
+fish_style_pwd_dir_length = 0
 
 [character]
-success_symbol = "[❯](purple)"
+success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+vimcmd_symbol = "[❮](purple)"
 
 [git_branch]
+disabled = true
 format = "[$branch]($style)"
 style = "#A3BE8C"
 
 [git_status]
-
+disabled = true
 format = "[($conflicted$untracked[$staged](#A3BE8C)[$modified$renamed](#EBCB8B)[$deleted](#BF616A)$stashed$diverged)]($style) [($ahead_behind)]() "
 style = "cyan"
 conflicted = " ${count}"
@@ -42,6 +46,7 @@ stashed = " *${count}"
 diverged = '⇕▲${ahead_count}▼${behind_count}'
 
 [git_state]
+disabled = true
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
@@ -101,8 +106,21 @@ Unknown = " "
 Void = " "
 Windows = "󰍲 "
 
+[custom.git_branch]
+when = true
+command = "jj root >/dev/null 2>&1 || starship module git_branch"
+
+[custom.git_state]
+when = true
+command = "jj root >/dev/null 2>&1 || starship module git_state"
+
+[custom.git_status]
+when = true
+command = "jj root >/dev/null 2>&1 || starship module git_status"
+
+
 [custom.jj]
-command = '''starship-jj --ignore-working-copy starship prompt | sed -e "s;▲; ▲;" -e "s;▼; ▼;" '''
+command = '$HOME/.local/bin/repo-prompt.bash'
 format = "[$symbol](blue bold) $output "
 symbol = "\ue702"
 when = "jj root --ignore-working-copy"
