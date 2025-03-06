@@ -2,6 +2,7 @@
 # ghostty +show-config --default --docs
 # ghostty +list-themes
 
+
 # Font
 freetype-load-flags            = no-hinting
 freetype-load-flags            = no-force-autohint

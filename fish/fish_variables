@@ -1,31 +1,66 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export FZF_ALT_C_COMMAND:fd\x20\x2d\x2dtype\x3dd\x20\x2d\x2dhidden\x20\x2d\x2dstrip\x2dcwd\x2dprefix\x20\x2d\x2dexclude\x20\x2egit
+SETUVAR --export FZF_CTRL_T_COMMAND:fd\x20\x2d\x2dhidden\x20\x2d\x2dstrip\x2dcwd\x2dprefix\x20\x2d\x2dexclude\x20\x2egit
+SETUVAR --export FZF_CTRL_T_OPTS:\x2d\x2dpreview\x20\x27bat\x20\x2dn\x20\x2d\x2dcolor\x3dalways\x20\x2d\x2dline\x2drange\x20\x3a500\x20\x7b\x7d\x27
+SETUVAR --export FZF_DEFAULT_COMMAND:fd\x20\x2d\x2dhidden\x20\x2d\x2dstrip\x2dcwd\x2dprefix\x20\x2d\x2dexclude\x20\x2egit
+SETUVAR --export FZF_DEFAULT_OPTS:\x0a\x20\x20\x2d\x2dhighlight\x2dline\x0a\x20\x20\x2d\x2dinfo\x3dinline\x2dright\x0a\x20\x20\x2d\x2dansi\x0a\x20\x20\x2d\x2dlayout\x3dreverse\x0a\x20\x20\x2d\x2dborder\x3drounded\x0a\x20\x20\x2d\x2dcolor\x3dbg\x2b\x3a\x235A6984\x0a\x20\x20\x2d\x2dcolor\x3dbg\x3a\x23212632\x0a\x20\x20\x2d\x2dcolor\x3dborder\x3a\x237E8CA7\x0a\x20\x20\x2d\x2dcolor\x3dfg\x3a\x23c0caf5\x0a\x20\x20\x2d\x2dcolor\x3dgutter\x3a\x2316161e\x0a\x20\x20\x2d\x2dcolor\x3dheader\x3a\x23ff9e64\x0a\x20\x20\x2d\x2dcolor\x3dhl\x2b\x3a\x232ac3de\x0a\x20\x20\x2d\x2dcolor\x3dhl\x3a\x232ac3de\x0a\x20\x20\x2d\x2dcolor\x3dinfo\x3a\x23545c7e\x0a\x20\x20\x2d\x2dcolor\x3dmarker\x3a\x23ff007c\x0a\x20\x20\x2d\x2dcolor\x3dpointer\x3a\x237E8CA7\x0a\x20\x20\x2d\x2dcolor\x3dprompt\x3a\x232ac3de\x0a\x20\x20\x2d\x2dcolor\x3dquery\x3a\x23c0caf5\x3aregular\x0a\x20\x20\x2d\x2dcolor\x3dscrollbar\x3a\x2327a1b9\x0a\x20\x20\x2d\x2dcolor\x3dseparator\x3a\x237E8CA7\x0a\x20\x20\x2d\x2dcolor\x3dspinner\x3a\x23ff007c\x0a
+SETUVAR --export JJ_CONFIG:/Users/mgj/\x2econfig/jj/config\x2etoml
+SETUVAR --export XDG_CONFIG_HOME:/Users/mgj/\x2econfig/
 SETUVAR __fish_initialized:3800
-SETUVAR fish_color_autosuggestion:brblack
-SETUVAR fish_color_cancel:\x2dr
-SETUVAR fish_color_command:normal
-SETUVAR fish_color_comment:red
-SETUVAR fish_color_cwd:green
-SETUVAR fish_color_cwd_root:red
-SETUVAR fish_color_end:green
-SETUVAR fish_color_error:brred
-SETUVAR fish_color_escape:brcyan
-SETUVAR fish_color_history_current:\x2d\x2dbold
-SETUVAR fish_color_host:normal
-SETUVAR fish_color_host_remote:yellow
-SETUVAR fish_color_normal:normal
-SETUVAR fish_color_operator:brcyan
-SETUVAR fish_color_param:cyan
-SETUVAR fish_color_quote:yellow
-SETUVAR fish_color_redirection:cyan\x1e\x2d\x2dbold
-SETUVAR fish_color_search_match:white\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_status:red
-SETUVAR fish_color_user:brgreen
+SETUVAR _fisher_acomagu_2F_fish_2D_async_2D_prompt_files:\x7e/\x2econfig/fish/conf\x2ed/__async_prompt\x2efish
+SETUVAR _fisher_fishingline_2F_safe_2D_rm_files:\x7e/\x2econfig//fish/functions/__safe\x2drm\x2epl\x1e\x7e/\x2econfig//fish/functions/__shell\x2dsafe\x2drm\x2ebash\x1e\x7e/\x2econfig//fish/functions/del\x2efish\x1e\x7e/\x2econfig//fish/functions/rm\x2efish\x1e\x7e/\x2econfig//fish/functions/safe\x2drm\x2efish
+SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig//fish/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig//fish/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig//fish/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig//fish/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig//fish/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig//fish/conf\x2ed/autopair\x2efish
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig//fish/functions/fisher\x2efish\x1e\x7e/\x2econfig//fish/completions/fisher\x2efish
+SETUVAR _fisher_jorgebucaran_2F_getopts_2E_fish_files:\x7e/\x2econfig//fish/functions/getopts\x2efish
+SETUVAR _fisher_meaningful_2D_ooo_2F_sponge_files:\x7e/\x2econfig//fish/functions/_sponge_clear_state\x2efish\x1e\x7e/\x2econfig//fish/functions/_sponge_on_exit\x2efish\x1e\x7e/\x2econfig//fish/functions/_sponge_on_postexec\x2efish\x1e\x7e/\x2econfig//fish/functions/_sponge_on_preexec\x2efish\x1e\x7e/\x2econfig//fish/functions/_sponge_on_prompt\x2efish\x1e\x7e/\x2econfig//fish/functions/_sponge_remove_from_history\x2efish\x1e\x7e/\x2econfig//fish/functions/sponge_filter_failed\x2efish\x1e\x7e/\x2econfig//fish/functions/sponge_filter_matched\x2efish\x1e\x7e/\x2econfig//fish/conf\x2ed/sponge\x2efish
+SETUVAR _fisher_nickeb96_2F_puffer_2D_fish_files:\x7e/\x2econfig//fish/functions/_puffer_fish_expand_bang\x2efish\x1e\x7e/\x2econfig//fish/functions/_puffer_fish_expand_dots\x2efish\x1e\x7e/\x2econfig//fish/functions/_puffer_fish_expand_lastarg\x2efish\x1e\x7e/\x2econfig//fish/conf\x2ed/puffer_fish_key_bindings\x2efish
+SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig//fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig//fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig//fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig//fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig//fish/completions/fzf_configure_bindings\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/autopair\x2efish\x1ejorgebucaran/getopts\x2efish\x1efishingline/safe\x2drm\x1enickeb96/puffer\x2dfish\x1emeaningful\x2dooo/sponge\x1epatrickf1/fzf\x2efish\x1eacomagu/fish\x2dasync\x2dprompt
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR fish_color_autosuggestion:8a8a8a
+SETUVAR fish_color_cancel:b48ead
+SETUVAR fish_color_command:81a1c1
+SETUVAR fish_color_comment:8a8a8a
+SETUVAR fish_color_cwd:88c0d0
+SETUVAR fish_color_cwd_root:bf616a
+SETUVAR fish_color_end:eceff4
+SETUVAR fish_color_error:bf616a
+SETUVAR fish_color_escape:ebcb8b
+SETUVAR fish_color_history_current:e5e9f0\x1e\x2d\x2dbold
+SETUVAR fish_color_host:81a1c1
+SETUVAR fish_color_host_remote:ebcb8b
+SETUVAR fish_color_keyword:81a1c1
+SETUVAR fish_color_match:88c0d0
+SETUVAR fish_color_normal:d8dee9
+SETUVAR fish_color_operator:81a1c1
+SETUVAR fish_color_option:8fbcbb
+SETUVAR fish_color_param:d8dee9
+SETUVAR fish_color_quote:a3be8c
+SETUVAR fish_color_redirection:81a1c1
+SETUVAR fish_color_search_match:88c0d0
+SETUVAR fish_color_selection:d8dee9\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3d434c5e
+SETUVAR fish_color_status:bf616a
+SETUVAR fish_color_user:d8dee9
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
 SETUVAR fish_key_bindings:fish_default_key_bindings
-SETUVAR fish_pager_color_completion:normal
-SETUVAR fish_pager_color_description:yellow\x1e\x2di
-SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
-SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_pager_color_selected_background:\x2dr
+SETUVAR fish_pager_color_background:\x1d
+SETUVAR fish_pager_color_completion:eceff4
+SETUVAR fish_pager_color_description:5e81ac
+SETUVAR fish_pager_color_prefix:ebcb8b
+SETUVAR fish_pager_color_progress:d08770
+SETUVAR fish_pager_color_secondary_background:\x1d
+SETUVAR fish_pager_color_secondary_completion:\x1d
+SETUVAR fish_pager_color_secondary_description:\x1d
+SETUVAR fish_pager_color_secondary_prefix:\x1d
+SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d434c5e
+SETUVAR fish_pager_color_selected_completion:\x1d
+SETUVAR fish_pager_color_selected_description:\x1d
+SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR fish_user_paths:/Users/mgj/\x2ezsh/plugins/zsh\x2dsyntax\x2dhighlighting\x1e/Users/mgj/\x2ezsh/plugins/zsh\x2dautosuggestions\x1e/Applications/WezTerm\x2eapp/Contents/MacOS\x1e/Users/mgj/\x2elocal/bin\x1e/sbin\x1e/bin\x1e/usr/sbin\x1e/usr/bin\x1e/usr/local/bin\x1e/nix/var/nix/profiles/default/bin\x1e/run/current\x2dsystem/sw/bin\x1e/etc/profiles/per\x2duser/mgj/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/bin\x1e/Users/mgj/\x2ecargo/bin
+SETUVAR sponge_allow_previously_successful:true
+SETUVAR sponge_delay:2
+SETUVAR sponge_filters:sponge_filter_failed\x1esponge_filter_matched
+SETUVAR sponge_purge_only_on_exit:false
+SETUVAR sponge_regex_patterns:\x1d
+SETUVAR sponge_successful_exit_codes:0
