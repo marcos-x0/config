@@ -1,4 +1,5 @@
 format = """
+$shell\
 $os\
 $username\
 $hostname\
@@ -13,11 +14,17 @@ $line_break\
 $python\
 $character"""
 
+[shell]
+disabled = false
+style = "blue"
+fish_indicator = "  " # nf-md-fish
+zsh_indicator = " "   # nf-dev-terminal
+bash_indicator = " "  # nf-cod-terminal_bash
 
 [directory]
 style = "blue"
 truncation_length = 0
-truncate_to_repo = true
+truncate_to_repo = false
 fish_style_pwd_dir_length = 0
 
 [character]
