@@ -11,7 +11,7 @@ export XDG_CONFIG_HOME="$HOME/.config/"
 export PATH=$HOME/.nix-profile/bin/:/nix/store/bin/:$HOME/.cargo/bin/:/opt/homebrew/bin/:/opt/homebrew/sbin/:$PATH
 #export PATH=/nix/var/nix/profiles/default/bin:$PATH
 
-export PATH="$PATH:$HOME/.local/share/containers/podman-desktop/extensions-storage/compose/bin:$HOME/.local/share/containers/podman-desktop/extensions-storage/kind/kind-darwin-arm64"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/share/containers/podman-desktop/extensions-storage/compose/bin:$HOME/.local/share/containers/podman-desktop/extensions-storage/kind/kind-darwin-arm64"
 export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS/"
 #export PATH="$HOME/miniconda3/bin/:$PATH"
 
