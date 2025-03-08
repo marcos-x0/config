@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export EDITOR:nvim
 SETUVAR --export FZF_ALT_C_COMMAND:fd\x20\x2d\x2dtype\x3dd\x20\x2d\x2dhidden\x20\x2d\x2dstrip\x2dcwd\x2dprefix\x20\x2d\x2dexclude\x20\x2egit
 SETUVAR --export FZF_CTRL_T_COMMAND:fd\x20\x2d\x2dhidden\x20\x2d\x2dstrip\x2dcwd\x2dprefix\x20\x2d\x2dexclude\x20\x2egit
 SETUVAR --export FZF_CTRL_T_OPTS:\x2d\x2dpreview\x20\x27bat\x20\x2dn\x20\x2d\x2dcolor\x3dalways\x20\x2d\x2dline\x2drange\x20\x3a500\x20\x7b\x7d\x27
@@ -57,7 +58,7 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d434c5e
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/Users/mgj/\x2ezsh/plugins/zsh\x2dsyntax\x2dhighlighting\x1e/Users/mgj/\x2ezsh/plugins/zsh\x2dautosuggestions\x1e/Applications/WezTerm\x2eapp/Contents/MacOS\x1e/Users/mgj/\x2elocal/bin\x1e/sbin\x1e/bin\x1e/usr/sbin\x1e/usr/bin\x1e/usr/local/bin\x1e/nix/var/nix/profiles/default/bin\x1e/run/current\x2dsystem/sw/bin\x1e/etc/profiles/per\x2duser/mgj/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/bin\x1e/Users/mgj/\x2ecargo/bin
+SETUVAR fish_user_paths:/opt/local/bin\x1e/Users/mgj/\x2ezsh/plugins/zsh\x2dsyntax\x2dhighlighting\x1e/Users/mgj/\x2ezsh/plugins/zsh\x2dautosuggestions\x1e/Applications/WezTerm\x2eapp/Contents/MacOS\x1e/Users/mgj/\x2elocal/bin\x1e/sbin\x1e/bin\x1e/usr/sbin\x1e/usr/bin\x1e/usr/local/bin\x1e/nix/var/nix/profiles/default/bin\x1e/run/current\x2dsystem/sw/bin\x1e/etc/profiles/per\x2duser/mgj/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/bin\x1e/Users/mgj/\x2ecargo/bin
 SETUVAR sponge_allow_previously_successful:true
 SETUVAR sponge_delay:2
 SETUVAR sponge_filters:sponge_filter_failed\x1esponge_filter_matched

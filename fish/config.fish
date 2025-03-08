@@ -3,6 +3,7 @@ set fish_greeting
 fish_add_path $HOME/.nix-profile/bin/
 fish_add_path /nix/store/bin/
 fish_add_path $HOME/.cargo/bin/
+fish_add_path /opt/local/bin/
 fish_add_path /opt/homebrew/bin/
 fish_add_path /opt/homebrew/sbin/
 fish_add_path $HOME/.nix-profile/bin
@@ -22,6 +23,7 @@ fish_add_path $HOME/.zsh/plugins/zsh-autosuggestions
 fish_add_path $HOME/.zsh/plugins/zsh-syntax-highlighting
 
 set -U -x JJ_CONFIG "$HOME/.config/jj/config.toml"
+set -U -x EDITOR nvim
 
 # fish_add_path $HOME/.cargo/bin
 #
