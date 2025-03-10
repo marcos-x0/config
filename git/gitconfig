@@ -1,13 +1,12 @@
 [init]
 	defaultBranch = main
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
-[user]
-	name = marcox-x0
-	email = 56_despots_parsnip@icloud.com
+
 [core]
     pager = delta
 
