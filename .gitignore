@@ -10,3 +10,4 @@ nvim-*
 .backup
 .swap
 fontconfig
+fish/fish_variables

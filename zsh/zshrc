@@ -30,9 +30,9 @@ export HOSTNAME=mac
 
 
 #source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
-#source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 HISTSIZE=10001
 SAVEHIST=10000
