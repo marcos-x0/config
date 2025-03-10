@@ -4,27 +4,28 @@ $os\
 $username\
 $hostname\
 $git_metrics\
-$directory\
 ${custom.jj}\
 ${custom.git_branch}\
 ${custom.git_state}\
 ${custom.git_status}\
 $cmd_duration\
 $line_break\
-$python\
+$directory\
 $character"""
 
 [shell]
 disabled = false
+format = "[$indicator]($style)"
 style = "blue"
-fish_indicator = "  " # nf-md-fish
-zsh_indicator = " "   # nf-dev-terminal
-bash_indicator = " "  # nf-cod-terminal_bash
+# fish_indicator = "  " # nf-md-fish
+fish_indicator = "" # nf-md-fish
+# zsh_indicator = " "   # nf-dev-terminal
+zsh_indicator = "  " # nf-cod-terminal_bash
 
 [directory]
 style = "blue"
 truncation_length = 0
-truncate_to_repo = false
+truncate_to_repo = true
 fish_style_pwd_dir_length = 0
 
 [character]
@@ -62,7 +63,7 @@ format = "[$duration]($style) "
 style = "yellow"
 
 [os]
-format = "[$symbol]($style) "
+format = "[$symbol]($style)"
 style = "bold blue"
 disabled = false
 
@@ -89,7 +90,8 @@ Illumos = "󰈸 "
 Kali = " "
 Linux = " "
 Mabox = " "
-Macos = " "
+# Macos = " "
+Macos = ""
 Manjaro = " "
 Mariner = " "
 MidnightBSD = " "
@@ -129,5 +131,5 @@ command = "jj root >/dev/null 2>&1 || starship module git_status"
 [custom.jj]
 command = '$HOME/.local/bin/repo-prompt.bash'
 format = "[$symbol](blue bold) $output "
-symbol = "\ue702"
+symbol = "󰊢 "
 when = "jj root --ignore-working-copy"
