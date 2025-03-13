@@ -11,4 +11,5 @@ nvim-*
 .swap
 fontconfig
 fish/fish_variables
+glab-cli/config.yml
 jj/repos
