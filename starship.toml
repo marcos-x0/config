@@ -13,6 +13,8 @@ $line_break\
 $directory\
 $character"""
 
+command_timeout = 5000
+
 [shell]
 disabled = false
 format = "[$indicator]($style)"
