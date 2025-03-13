@@ -22,7 +22,7 @@ return {
           local green = vim.tbl_extend("force", { fg = "#c1d3b2", bg = "#415430" }, {})
           local red = vim.tbl_extend("force", { fg = "#d4959b", bg = "#662a2f" }, {})
           local purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, {})
-          -- local unterline_purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, { underline = true })
+          -- local underline_purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, { underline = true })
           local yellow = vim.tbl_extend("force", { fg = colors.aurora.yellow }, {})
           local orange = vim.tbl_extend("force", { fg = colors.aurora.orange }, {})
 
@@ -60,6 +60,11 @@ return {
           highlights["@boolean"] = artic_ocean
 
           highlights["@number"] = orange
+
+          -- highlights["DiffAdd"] = vim.tbl_extend("force", { bg = "#bada9f" }, {})
+          -- highlights["DiffChange"] = vim.tbl_extend("force", { bg = "#e5d5ac" }, {})
+          -- highlights["DiffDelete"] = vim.tbl_extend("force", { fg = "#ff8080", bg = "#ffb0b0" }, {})
+          -- highlights["DiffDelete"] = vim.tbl_extend("force", { bg = "#8cbee2" }, {})
           -- FZF-Lua highlight group overrides
           -- highlights.FzfLuaNormal = { link = "TelescopeNormal" }
           -- highlights.FzfLuaNormal = yellow

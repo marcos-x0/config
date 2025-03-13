@@ -1,9 +1,6 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 #
 ## .zhrc for mac
@@ -91,10 +88,10 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --info=inline-right \
   --ansi \
   --layout=reverse \
-  --border=none
-  --color=bg+:#283457 \
-  --color=bg:#16161e \
-  --color=border:#27a1b9 \
+  --border=rounded \
+  --color=bg+:#5A6984 \
+  --color=bg:#212632 \
+  --color=border:#7e8ca7 \
   --color=fg:#c0caf5 \
   --color=gutter:#16161e \
   --color=header:#ff9e64 \
@@ -102,11 +99,11 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=hl:#2ac3de \
   --color=info:#545c7e \
   --color=marker:#ff007c \
-  --color=pointer:#ff007c \
+  --color=pointer:#7E8CA7 \
   --color=prompt:#2ac3de \
   --color=query:#c0caf5:regular \
   --color=scrollbar:#27a1b9 \
-  --color=separator:#ff9e64 \
+  --color=separator:#7E8CA7 \
   --color=spinner:#ff007c \
 "
 
@@ -152,3 +149,6 @@ _fzf_compgen_dir() {
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
+eval "$(fnm env --use-on-cd --shell zsh)"
+

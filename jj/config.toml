@@ -6,9 +6,28 @@ email = "56_despots_parsnip@icloud.com"
 
 [ui]
 pager = "delta"
-default-command = ["log", "-r", "(::@ | @::) ~(::main)-"]
+default-command = ["log", "-r", "(::@ | @::) ~(::trunk())-"]
 conflict-marker-style = "git"
 diff-editor = ":builtin"
+
+[merge-tools.vimdiff]
+merge-args = [
+  "-f",
+  "-d",
+  "$output",
+  "-M",
+  "$left",
+  "$base",
+  "$right",
+  "-c",
+  "wincmd J",
+  "-c",
+  "set modifiable",
+  "-c",
+  "set write",
+]
+program = "nvim"
+merge-tool-edits-conflict-markers = true
 
 [aliases]
 l = ["log"]

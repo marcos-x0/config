@@ -20,3 +20,12 @@ abbr -a cp "cp -R"
 abbr -a cl clear
 
 abbr -a cfg "cd ~/.config && nvim; cd -"
+abbr -a clean-nvim "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
+
+abbr -a qsetup "qmk setup -H ."
+abbr -a qflash "qmk flash -kb mx0/v1 -km default"
+abbr -a qgen "qmk generate-compilation-database -kb mx0/v1 -km default"
+
+function jjrebase
+    jj rebase -R @ -A $argv[1] && jj b set $argv[1] && jj edit @+ && jj new
+end

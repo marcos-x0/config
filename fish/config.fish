@@ -25,6 +25,9 @@ if status is-interactive
     jj util completion fish | source
     fnm env --use-on-cd --shell fish | source
     fnm completions --shell fish | source
+    fish_add_path --global --move --path "$HOME/.local/share/bob/nvim-bin"
+    bob complete fish | source
+
 end
 
 starship init fish | source
