@@ -60,6 +60,11 @@ return {
           highlights["@boolean"] = artic_ocean
 
           highlights["@number"] = orange
+
+          -- highlights["DiffAdd"] = vim.tbl_extend("force", { bg = "#bada9f" }, {})
+          -- highlights["DiffChange"] = vim.tbl_extend("force", { bg = "#e5d5ac" }, {})
+          -- highlights["DiffDelete"] = vim.tbl_extend("force", { fg = "#ff8080", bg = "#ffb0b0" }, {})
+          -- highlights["DiffDelete"] = vim.tbl_extend("force", { bg = "#8cbee2" }, {})
           -- FZF-Lua highlight group overrides
           -- highlights.FzfLuaNormal = { link = "TelescopeNormal" }
           -- highlights.FzfLuaNormal = yellow
