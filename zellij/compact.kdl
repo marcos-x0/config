@@ -1,0 +1,17 @@
+
+
+
+layout {
+  pane size=1 {
+    plugin location="file:~/.config/zellij/zj-status-bar.wasm"
+  }
+  pane split_direction="horizontal" {
+      pane {
+        size "66%"
+      }
+      pane split_direction="vertical" {
+          pane 
+          pane
+        }
+    }
+}
