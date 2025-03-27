@@ -31,9 +31,9 @@ vim.keymap.set("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
-map("n", "<leader>e", function()
-  vim.cmd("Neotree reveal source=filesystem position=float dir=" .. vim.fn.getcwd())
-end)
+-- map("n", "<leader>e", function()
+--   vim.cmd("Neotree reveal source=filesystem position=float dir=" .. vim.fn.getcwd())
+-- end)
 
 -- Keybinds to make split navigation easier.
 local function navigate_window(direction)

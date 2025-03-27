@@ -147,15 +147,20 @@ theme "nord_c"
 keybinds clear-defaults=true {
     normal {
         // Tab management
+
         bind "Super t" { NewTab; }
-        bind "Super w" { CloseTab; }
-        bind "Super Alt 1" { GoToTab 1; }
-        bind "Super Alt 2" { GoToTab 2; }
-        bind "Super Alt 3" { GoToTab 3; }
-        bind "Super Alt 4" { GoToTab 4; }
-        bind "Super Alt 5" { GoToTab 5; }
-        bind "Super Alt Left" { GoToPreviousTab; }
-        bind "Super Alt Right" { GoToNextTab; }
+        bind "Alt w" { CloseTab; }
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
+        bind "Ctrl Alt Left" { GoToPreviousTab; }
+        bind "Ctrl Alt Right" { GoToNextTab; }
 
         bind "Super Shift f" {ToggleFocusFullscreen; }
 
@@ -170,11 +175,7 @@ keybinds clear-defaults=true {
         bind "Super Up" { MoveFocus "Up"; }
         bind "Super Right" { MoveFocus "Right"; }
 
-              // If you prefer actual arrow keys instead of hjkl
-        bind "Alt Ctrl left" { Resize "Left"; }
-        bind "Alt Ctrl down" { Resize "Down"; }
-        bind "Alt Ctrl up" { Resize "Up"; }
-        bind "Alt Ctrl right" { Resize "Right"; }
+
 
         // Quit Zellij
         bind "Ctrl q" { Quit; }
@@ -183,8 +184,8 @@ keybinds clear-defaults=true {
     }
 
     resize {
-    bind "Alt r" { SwitchToMode "normal"; }
-           bind "Alt  Left" { Resize "Left"; }
+        bind "Alt r" { SwitchToMode "normal"; }
+        bind "Alt  Left" { Resize "Left"; }
         bind "Alt Down" { Resize "Down"; }
         bind "Alt Up" { Resize "Up"; }
         bind "Alt Right" { Resize "Right"; }

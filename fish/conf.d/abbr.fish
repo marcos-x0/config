@@ -20,6 +20,7 @@ abbr -a cp "cp -R"
 abbr -a cl clear
 
 abbr -a cfg "cd ~/.config && nvim; cd -"
+abbr -a clean-nvim "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
 
 function jjrebase
     jj rebase -R @ -A $argv[1] && jj b set $argv[1] && jj edit @+ && jj new
