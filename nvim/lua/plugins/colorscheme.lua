@@ -22,7 +22,7 @@ return {
           local green = vim.tbl_extend("force", { fg = "#c1d3b2", bg = "#415430" }, {})
           local red = vim.tbl_extend("force", { fg = "#d4959b", bg = "#662a2f" }, {})
           local purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, {})
-          -- local unterline_purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, { underline = true })
+          -- local underline_purple = vim.tbl_extend("force", { fg = colors.aurora.purple }, { underline = true })
           local yellow = vim.tbl_extend("force", { fg = colors.aurora.yellow }, {})
           local orange = vim.tbl_extend("force", { fg = colors.aurora.orange }, {})
 

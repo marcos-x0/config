@@ -4,7 +4,7 @@
 --
 local map = vim.keymap.set
 
--- Key mapping to format the line legth to vim.opt.textwidth
+-- Key mapping to format the line length to vim.opt.textwidth
 map("n", "<leader>cb", "ggVGgq", { noremap = true, silent = true, desc = "Format buffer to 80 columns" })
 -- map(
 --   "n",
@@ -116,10 +116,6 @@ vim.keymap.set("v", "<leader>cf", function()
   -- Re-indent selected block
   vim.cmd("normal! =")
 end, { desc = "Format with ESLint & Prettier and fix indentation" })
-
-map("n", "<leader>'", function()
-  require("fzf-lua").resume()
-end, { desc = "Resume fzf-lua" })
 
 -- Primeagen's keymaps
 

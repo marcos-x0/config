@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -13,15 +14,21 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     picker = {
+      enabled = true,
+      matcher = { frecency = true, history_bonus = true },
+      ---@class snacks.picker.formatters.Config
+      formatters = { file = { filename_first = true } },
       sources = {
         explorer = {
-          layout = { preset = "default", preview = true, layout = { backdrop = false } },
+          auto_close = true,
+          layout = { preset = "default", preview = true, layout = { backdrop = true } },
           -- your explorer picker configuration comes here
           -- or leave it empty to use the default settings
         },
+        buffers = { current = false },
       },
       layout = {
-        layout = { backdrop = false },
+        layout = { backdrop = true },
         preset = "dropdown",
       },
     },
@@ -31,5 +38,14 @@ return {
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+  },
+  keys = {
+    -- stylua: ignore start
+
+    -- { "<leader>,", function() Snacks.picker.buffers({}) end, desc = "Buffers" },
+    { "<leader>'", function() Snacks.picker.resume() end, desc = "Resume" },
+    { "\\", function() Snacks.explorer() end, desc = "File Explorer" },
+
+    -- stylua: ignore end
   },
 }
