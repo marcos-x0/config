@@ -1,5 +1,3 @@
-diff-editor = "dif diff"
-
 [user]
 name = "marcox-x0"
 email = "56_despots_parsnip@icloud.com"
@@ -8,8 +6,43 @@ email = "56_despots_parsnip@icloud.com"
 # push-new-bookmarks = true
 
 [ui]
+default-command = [
+  "log",
+  "-r",
+  "(heads(@::) | heads(@::)- | heads(@::)-- | heads(@::)--- | @+++ | @++ | @ | @- | @-- | @--- | trunk())",
+  "-T",
+  '''
+        if(root,
+            format_root_commit(self),
+            label(if(current_working_copy, "working_copy"),
+              concat(
+                separate(" ",
+                  format_short_change_id_with_hidden_and_divergent_info(self),
+                  commit_timestamp(self).ago(),
+
+                  bookmarks,
+                  tags,
+                  working_copies,
+                  if(git_head, label("git_head", "git_head()")),
+                  format_short_commit_id(commit_id),
+                  if(conflict, label("conflict", "conflict")),
+                  if(config("ui.show-cryptographic-signatures").as_boolean(),
+                    format_short_cryptographic_signature(signature)),
+                  if(empty, label("empty", "(empty)")),
+                  if(description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                  ),
+                ),
+              ),
+            )
+          )
+''',
+] # default-command = ["log", "-r", "(::@ | @::) ~(::trunk())-"]
+editor = "nvim"
 pager = "delta"
-default-command = ["log", "-r", "(::@ | @::) ~(::trunk())-"]
+
+
 conflict-marker-style = "git"
 diff-editor = "gitpatch"
 
@@ -60,12 +93,94 @@ program = "git"
 args = ["merge-file", "--diff3", "$left", "$base", "$right", "-p"]
 
 [aliases]
-l = ["log"]
+l = ["log", "-r", "(::@ | @::) ~(::trunk())- | trunk()::", "-T", '''
+        if(root,
+            format_root_commit(self),
+            label(if(current_working_copy, "working_copy"),
+              concat(
+                separate(" ",
+                  format_short_change_id_with_hidden_and_divergent_info(self),
+                  commit_timestamp(self).ago(),
+
+                  bookmarks,
+                  tags,
+                  working_copies,
+                  if(git_head, label("git_head", "git_head()")),
+                  format_short_commit_id(commit_id),
+                  if(conflict, label("conflict", "conflict")),
+                  if(config("ui.show-cryptographic-signatures").as_boolean(),
+                    format_short_cryptographic_signature(signature)),
+                  if(empty, label("empty", "(empty)")),
+                  if(description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                  ),
+                ),
+              ),
+            )
+          )
+''']
+
+ls = [
+  "log",
+  "-r",
+  "(heads(@::) | heads(@::)- | heads(@::)-- | heads(@::)--- | @ | @- | @-- | @---) | (trunk() | trunk()+ | trunk()++ | trunk()+++)",
+]
+
+lx = [
+  "log",
+  "-r",
+  "conflicts() & @::",
+  "-T",
+  '''
+        if(root,
+            format_root_commit(self),
+            label(if(current_working_copy, "working_copy"),
+              concat(
+                separate(" ",
+                  format_short_change_id_with_hidden_and_divergent_info(self),
+                  commit_timestamp(self).ago(),
+                  bookmarks,
+                  tags,
+                  working_copies,
+                  if(git_head, label("git_head", "git_head()")),
+                  format_short_commit_id(commit_id),
+                  if(config("ui.show-cryptographic-signatures").as_boolean(),
+                    format_short_cryptographic_signature(signature)),
+                  if(empty, label("empty", "(empty)")),
+                  if(description.first_line().substr(0, 32) == description.first_line(),
+                    description.first_line(),
+                    description.first_line().substr(0, 31) ++ "…",
+                  ),
+                  if(description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                  ),
+                ),
+              ),
+            )
+          )
+''',
+]
+
+
 e = ["edit"]
 d = ["describe", "-m"]
 u = ["undo"]
-res = ["resolve", "--tool", "vimdiff"]
+rx = ["resolve", "--tool", "vimdiff"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+
+c = ["commit", "-m"]
+ci = ["commit", "--interactive"]
+i = ["git", "init", "--colocate"]
+nb = ["bookmark", "create", "-r @-"] # "new bookmark"
+# pull = ["git", "fetch"]
+# push = ["git", "push", "--allow-new"]
+r = ["rebase"]
+ra = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk"]
+rb = ["rebase", "-s", "all:roots(trunk()..mutable()) & mine()", "-d", "trunk"]
+s = ["squash"]
+si = ["squash", "--interactive"]
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
