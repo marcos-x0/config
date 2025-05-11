@@ -66,3 +66,6 @@ d = ["describe", "-m"]
 u = ["undo"]
 res = ["resolve", "--tool", "vimdiff"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
