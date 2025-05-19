@@ -9,7 +9,7 @@ email = "56_despots_parsnip@icloud.com"
 default-command = [
   "log",
   "-r",
-  "(heads(@::) | heads(@::)- | heads(@::)-- | heads(@::)--- | @+++ | @++ | @ | @- | @-- | @--- | trunk())",
+  "(heads(@::) | heads(@::)- | heads(@::)-- | heads(@::)--- | @+++ | @++ | @ | @- | @-- | @--- | (trunk()+ & mine()) | trunk())",
   "-T",
   '''
         if(root,
@@ -38,34 +38,36 @@ default-command = [
             )
           )
 ''',
-] # default-command = ["log", "-r", "(::@ | @::) ~(::trunk())-"]
+]
+
+# default-command = ["log", "-r", "(::@ | @::) ~(::trunk())-"]
 editor = "nvim"
 pager = "delta"
 
 
 conflict-marker-style = "git"
-diff-editor = "gitpatch"
+# diff-editor = "gitpatch"
 
-[merge-tools.gitpatch]
-program = "sh"
-edit-args = [
-  "-c",
-  '''
-  set -eu
-  rm -f "$right/JJ-INSTRUCTIONS"
-  git -C "$left" init -q
-  git -C "$left" add -A
-  git -C "$left" commit -q -m baseline --allow-empty
-  mv "$left/.git" "$right"
-  git -C "$right" add --intent-to-add -A
-  git -C "$right" add -p
-  git -C "$right" diff-index --quiet --cached HEAD && { echo "No changes done, aborting split."; exit 1; }
-  git -C "$right" commit -q -m split
-  git -C "$right" restore . # undo changes in modified files
-  git -C "$right" reset .   # undo --intent-to-add
-  git -C "$right" clean -q -df # remove untracked files
-''',
-]
+# [merge-tools.gitpatch]
+# program = "sh"
+# edit-args = [
+#   "-c",
+#   '''
+#   set -eu
+#   rm -f "$right/JJ-INSTRUCTIONS"
+#   git -C "$left" init -q
+#   git -C "$left" add -A
+#   git -C "$left" commit -q -m baseline --allow-empty
+#   mv "$left/.git" "$right"
+#   git -C "$right" add --intent-to-add -A
+#   git -C "$right" add -p
+#   git -C "$right" diff-index --quiet --cached HEAD && { echo "No changes done, aborting split."; exit 1; }
+#   git -C "$right" commit -q -m split
+#   git -C "$right" restore . # undo changes in modified files
+#   git -C "$right" reset .   # undo --intent-to-add
+#   git -C "$right" clean -q -df # remove untracked files
+# ''',
+# ]
 
 merge-tool = "vimdiff"
 
@@ -85,6 +87,7 @@ merge-args = [
   "-c",
   "set write",
 ]
+
 program = "nvim"
 merge-tool-edits-conflict-markers = true
 
@@ -92,7 +95,14 @@ merge-tool-edits-conflict-markers = true
 program = "git"
 args = ["merge-file", "--diff3", "$left", "$base", "$right", "-p"]
 
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+
 [aliases]
+la = ["log", "-r", "::@"]
+
+# if(conflict, label("conflict", "conflict")),
+
 l = ["log", "-r", "(::@ | @::) ~(::trunk())- | trunk()::", "-T", '''
         if(root,
             format_root_commit(self),
@@ -107,7 +117,6 @@ l = ["log", "-r", "(::@ | @::) ~(::trunk())- | trunk()::", "-T", '''
                   working_copies,
                   if(git_head, label("git_head", "git_head()")),
                   format_short_commit_id(commit_id),
-                  if(conflict, label("conflict", "conflict")),
                   if(config("ui.show-cryptographic-signatures").as_boolean(),
                     format_short_cryptographic_signature(signature)),
                   if(empty, label("empty", "(empty)")),
@@ -130,7 +139,7 @@ ls = [
 lx = [
   "log",
   "-r",
-  "conflicts() & @::",
+  "conflicts() & (::@ | @::)",
   "-T",
   '''
         if(root,
@@ -181,6 +190,3 @@ ra = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk"]
 rb = ["rebase", "-s", "all:roots(trunk()..mutable()) & mine()", "-d", "trunk"]
 s = ["squash"]
 si = ["squash", "--interactive"]
-
-[revset-aliases]
-'closest_bookmark(to)' = 'heads(::to & bookmarks())'
