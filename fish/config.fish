@@ -22,12 +22,18 @@ set fish_greeting
 
 if status is-interactive
     /opt/homebrew/bin/brew shellenv | source
-    jj util completion fish | source
-    fnm env --use-on-cd --shell fish | source
-    fnm completions --shell fish | source
-    fish_add_path --global --move --path "$HOME/.local/share/bob/nvim-bin"
-    bob complete fish | source
+    direnv hook fish | source
 
+    # fnm env --use-on-cd --shell fish | source
+
+    jj util completion fish | source
+    devbox completion fish | source
+    # fnm completions --shell fish | source
+    # fish_add_path --global --move --path "$HOME/.local/share/bob/nvim-bin"
+    # bob complete fish | source
+    # devbox doesn't work with fish. just there to activate when fixed  
+    # devbox global shellenv | source
+    # devbox global shellenv --init-hook | source
 end
 
 starship init fish | source
@@ -83,3 +89,7 @@ starship init fish | source
 # set -U tide_color_pwd 81A1C1 # Nord Blue
 
 # tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
