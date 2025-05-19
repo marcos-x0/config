@@ -6,6 +6,20 @@ return {
       if not opts.servers then
         opts.servers = {}
       end
+
+      -- Configure denols to only activate if deno.lock exists
+      opts.servers.denols = {
+        root_dir = function(fname)
+          local lspconfig = require("lspconfig")
+          local root_dir = lspconfig.util.root_pattern("deno.lock", "deno.json", "deno.jsonc")(fname)
+          -- Only return root_dir if deno.lock specifically exists
+          if root_dir and vim.fn.filereadable(root_dir .. "/deno.lock") == 1 then
+            return root_dir
+          end
+          return nil
+        end,
+      }
+
       if not opts.servers.clangd then
         opts.servers.clangd = {}
       end
