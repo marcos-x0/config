@@ -2,6 +2,8 @@ abbr -a nv nvim
 abbr -a vi vim
 abbr -a o open
 
+abbr -a tsx "node --import tsx"
+
 abbr -a l lsd
 abbr -a l1 "clear; lsd -1"
 abbr -a ll "lsd -hlt"
@@ -22,10 +24,23 @@ abbr -a cl clear
 abbr -a cfg "cd ~/.config && nvim; cd -"
 abbr -a clean-nvim "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
 
+# keyboard
 abbr -a qsetup "qmk setup -H ."
 abbr -a qflash "qmk flash -kb mx0/v1 -km default"
 abbr -a qgen "qmk generate-compilation-database -kb mx0/v1 -km default"
 
+abbr -a gls "git diff --name-only"
+
+# this is a rebase for a very specific work flow 
 function jjrebase
     jj rebase -R @ -A $argv[1] && jj b set $argv[1] && jj edit @+ && jj new
 end
+
+# adding abbr for k8s
+
+abbr -a k kubectl
+abbr -a t task
+abbr -a tl 'task --list-all'
+
+abbr box devbox
+abbr j just

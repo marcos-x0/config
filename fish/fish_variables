@@ -49,7 +49,7 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d434c5e
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/opt/homebrew/opt/arm\x2dnone\x2deabi\x2dgcc\x408/bin\x1e/Users/mgj/\x2elocal/share/bob/nvim\x2dbin\x1e/sbin\x1e/bin\x1e/usr/sbin\x1e/usr/bin\x1e/usr/local/bin\x1e/Users/mgj/\x2ecargo/bin\x1e/Users/mgj/\x2elocal/bin
+SETUVAR fish_user_paths:/opt/homebrew/opt/socket_vmnet/bin\x1e/opt/homebrew/opt/arm\x2dnone\x2deabi\x2dgcc\x408/bin\x1e/Users/mgj/\x2elocal/share/bob/nvim\x2dbin\x1e/sbin\x1e/bin\x1e/usr/sbin\x1e/usr/bin\x1e/usr/local/bin\x1e/Users/mgj/\x2ecargo/bin\x1e/Users/mgj/\x2elocal/bin
 SETUVAR sponge_allow_previously_successful:true
 SETUVAR sponge_delay:2
 SETUVAR sponge_filters:sponge_filter_failed\x1esponge_filter_matched
