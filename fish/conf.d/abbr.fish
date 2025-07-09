@@ -42,5 +42,6 @@ abbr -a k kubectl
 abbr -a t task
 abbr -a tl 'task --list-all'
 
+# misc 
 abbr box devbox
 abbr j just

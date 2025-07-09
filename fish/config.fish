@@ -37,6 +37,8 @@ if status is-interactive
 end
 
 starship init fish | source
+# set -x DIRENV_LOG_FORMAT "\033[2mdirenv: %s\033[0m"
+set -x DIRENV_LOG_FORMAT (printf "\033[2mdirenv: %%s\033[0m")
 
 # set nord0 2e3440
 # set nord1 3b4252
