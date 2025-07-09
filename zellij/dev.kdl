@@ -1,9 +1,18 @@
 layout {
     cwd "/Users/mgj"
-    tab name=".config" hide_floating_panes=true {
+
+    default_tab_template {
         pane size=1 {
             plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
         }
+        children
+    }
+    
+
+    tab name=".config" hide_floating_panes=true {
+        // pane size=1 {
+        //     plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
+        // }
         pane cwd=".config" size="66%"
         pane size="34%" split_direction="vertical" {
             pane cwd=".config" size="50%"
@@ -11,9 +20,9 @@ layout {
         }
     }
     tab name="hh" hide_floating_panes=true {
-        pane size=1 {
-            plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
-        }
+        // pane size=1 {
+        //     plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
+        // }
         pane cwd=".dev/hh" size="66%"
         pane size="34%" split_direction="vertical" {
             pane cwd=".dev/hh" size="50%"
@@ -21,9 +30,9 @@ layout {
         }
     }
     tab name=".work" hide_floating_panes=true {
-        pane size=1 {
-            plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
-        }
+        // pane size=1 {
+        //     plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
+        // }
         pane cwd=".work" size="66%"
         pane size="34%" split_direction="vertical" {
             pane cwd=".work" size="50%"
@@ -32,9 +41,9 @@ layout {
     }
 
     tab name=".dev" focus=true hide_floating_panes=true {
-        pane size=1 {
-            plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
-        }
+        // pane size=1 {
+        //     plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
+        // }
         pane cwd=".dev" size="66%"
         pane size="34%" split_direction="vertical" {
             pane cwd=".dev" focus=true size="50%"
@@ -42,9 +51,9 @@ layout {
         }
     }
     new_tab_template {
-        pane size=1 {
-            plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
-        }
+        // pane size=1 {
+        //     plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
+        // }
         pane {
             pane size="66%"
             pane split_direction="vertical" {
