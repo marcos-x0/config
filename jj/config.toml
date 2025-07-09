@@ -110,13 +110,13 @@ l = ["log", "-r", "(::@ | @::) ~(::trunk())- | trunk()::", "-T", '''
               concat(
                 separate(" ",
                   format_short_change_id_with_hidden_and_divergent_info(self),
+                  format_short_commit_id(commit_id),
                   commit_timestamp(self).ago(),
 
                   bookmarks,
                   tags,
                   working_copies,
                   if(git_head, label("git_head", "git_head()")),
-                  format_short_commit_id(commit_id),
                   if(config("ui.show-cryptographic-signatures").as_boolean(),
                     format_short_cryptographic_signature(signature)),
                   if(empty, label("empty", "(empty)")),
@@ -148,12 +148,12 @@ lx = [
               concat(
                 separate(" ",
                   format_short_change_id_with_hidden_and_divergent_info(self),
+                  format_short_commit_id(commit_id),
                   commit_timestamp(self).ago(),
                   bookmarks,
                   tags,
                   working_copies,
                   if(git_head, label("git_head", "git_head()")),
-                  format_short_commit_id(commit_id),
                   if(config("ui.show-cryptographic-signatures").as_boolean(),
                     format_short_cryptographic_signature(signature)),
                   if(empty, label("empty", "(empty)")),
