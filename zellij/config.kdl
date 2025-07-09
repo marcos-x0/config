@@ -3,7 +3,8 @@
 
 // Disable frames around panes
 pane_frames false
-
+default_shell "fish"
+// default_shell "zsh -c fish"
 // Use a minimal default layout
 // default_layout "./compact.kdl"
 
@@ -192,6 +193,9 @@ keybinds clear-defaults=true {
       }
 }
 
+plugins {
+    zj-status-bar location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
+}
 // Only enable the tab bar plugin
 plugins {
     tab-bar location="zellij:tab-bar"

@@ -1,0 +1,15 @@
+layout {
+    cwd "/Users/mgj"
+    tab name="tab1" {
+        pane
+    }
+    tab name="tab2" {
+        pane
+    }
+    tab name="tab3" focus=true {
+        pane
+    }
+    tab name="tab4" {
+        pane
+    }
+}
