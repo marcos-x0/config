@@ -44,4 +44,4 @@ abbr -a tl 'task --list-all'
 
 # misc 
 abbr box devbox
-abbr j just
+abbr t task
