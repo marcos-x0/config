@@ -2,6 +2,8 @@
 name = "marcox-x0"
 email = "56_despots_parsnip@icloud.com"
 
+[snapshot]
+auto-update-stale = true
 # [git]
 # push-new-bookmarks = true
 
@@ -124,6 +126,8 @@ l = ["log", "-r", "(::@ | @::) ~(::trunk())- | trunk()::", "-T", '''
                     description.first_line(),
                     label(if(empty, "empty"), description_placeholder),
                   ),
+                  format_short_change_id_with_hidden_and_divergent_info(self),
+
                 ),
               ),
             )
