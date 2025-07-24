@@ -1,0 +1,2 @@
+# Global npm bin path - this gets loaded for ALL .envrc files  
+PATH_add ~/.local/share/npm-global/bin
