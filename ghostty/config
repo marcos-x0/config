@@ -59,6 +59,15 @@ keybind = alt+down=text:\x1b[1;3B
 keybind = alt+right=text:\x1b[1;3C
 keybind = alt+left=text:\x1b[1;3D
 
+# brighter Nord brights
+palette = 8=#6A748A
+palette = 9=#EF7D7D
+palette = 10=#C8EFAF
+palette = 11=#FFE8A8
+palette = 12=#A9D1F0
+palette = 13=#DCADD7
+palette = 14=#B0EAE6
+palette = 15=#FFFFFF
 # keybind = super+right=goto_split:right
 # keybind = super+down=goto_split:bottom
 # keybind = super+left=goto_split:left
