@@ -1,0 +1,13 @@
+**/.claude/settings.local.json
+**/.DS_Store
+Claude.md
+.llm-workflows
+.envrc
+envrc
+.envrc.*
+envrc.*
+devbox.json
+devbox.lock
+*.bak
+
+
