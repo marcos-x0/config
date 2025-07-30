@@ -2,7 +2,7 @@ abbr -a nv nvim
 abbr -a vi vim
 abbr -a o open
 alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
-
+abbr -a CLAUDE_CODE_ENABLE_TODO_TOOLS 1
 abbr -a tsx "node --import tsx"
 
 abbr -a l lsd
