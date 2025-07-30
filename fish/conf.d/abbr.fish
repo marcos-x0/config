@@ -1,6 +1,7 @@
 abbr -a nv nvim
 abbr -a vi vim
 abbr -a o open
+alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
 
 abbr -a tsx "node --import tsx"
 
@@ -45,3 +46,10 @@ abbr -a tl 'task --list-all'
 # misc 
 abbr box devbox
 abbr t task
+
+abbr -a ju 'jj edit @+'
+abbr -a jd 'jj edit @-'
+abbr -a jl 'jj ll'
+abbr -a jp 'jj git push'
+abbr -a jf 'jj git fetch'
+abbr -a jdt 'GIT_PAGER=cat jj diff --from \'trunk()\' --git'

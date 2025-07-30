@@ -1,5 +1,5 @@
 set fish_greeting
-
+# source "$HOME/.cargo/env.fish"
 # fish_add_path $HOME/.cargo/bin
 #
 #
@@ -19,6 +19,8 @@ set fish_greeting
 #
 # export CONTAINERS_REGISTRIES_CONF="~/.config/containers/registries.conf"
 # export ANDROID_HOME=$HOME/Library
+
+set -g fish_key_bindings fish_vi_key_bindings
 
 if status is-interactive
     /opt/homebrew/bin/brew shellenv | source
