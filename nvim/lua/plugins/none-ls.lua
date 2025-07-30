@@ -22,7 +22,7 @@ return {
       end,
       config = {
         find_json = function(_)
-          return vim.fn.expand("~/.config/nvim/cspell.json")
+          return vim.fn.expand("~/.config/cspell/cspell.json")
         end,
         on_success = function(cspell_config_file_path, params, action_name)
           if action_name == "add_to_json" then
