@@ -9,6 +9,11 @@ vim.g.snacks_animate = false
 vim.opt.relativenumber = false
 vim.opt.number = true
 
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.sessionoptions:remove("folds")
+
+vim.g.root_spec = { ".git", "lsp", "cwd" }
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
