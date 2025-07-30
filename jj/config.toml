@@ -1,17 +1,18 @@
 [user]
-name = "marcox-x0"
-email = "56_despots_parsnip@icloud.com"
+name = "marcos-x0"
+email = "192031541+marcos-x0@users.noreply.github.com"
 
 [snapshot]
 auto-update-stale = true
 # [git]
 # push-new-bookmarks = true
+# "(heads(@::) | heads(@::)- | heads(@::)-- | heads(@::)--- | @+++ | @++ | @ | @- | @-- | @--- | (trunk()+ & mine()) | trunk())",
 
 [ui]
 default-command = [
   "log",
   "-r",
-  "(heads(@::) | heads(@::)- | heads(@::)-- | heads(@::)--- | @+++ | @++ | @ | @- | @-- | @--- | (trunk()+ & mine()) | trunk())",
+  '(heads(@::) ~ (working_copies() ~ @)) | (heads(@::) ~ (working_copies() ~ @))- | roots(::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root())) | coalesce(trunk(), root()) | (bookmarks() | bookmarks()+) & (::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root())) | (@ | @+ | @-)',
   "-T",
   '''
         if(root,
@@ -19,14 +20,12 @@ default-command = [
             label(if(current_working_copy, "working_copy"),
               concat(
                 separate(" ",
-                  format_short_change_id_with_hidden_and_divergent_info(self),
-                  format_short_commit_id(commit_id),
+                  format_short_change_id_with_change_offset(self),
                   commit_timestamp(self).ago(),
 
                   bookmarks,
                   tags,
                   working_copies,
-                  if(git_head, label("git_head", "git_head()")),
                   if(conflict, label("conflict", "conflict")),
                   if(config("ui.show-cryptographic-signatures").as_boolean(),
                     format_short_cryptographic_signature(signature)),
@@ -100,25 +99,22 @@ args = ["merge-file", "--diff3", "$left", "$base", "$right", "-p"]
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 
+
 [aliases]
-la = ["log", "-r", "::@"]
-
-# if(conflict, label("conflict", "conflict")),
-
-l = ["log", "-r", "(::@ | @::) ~(::trunk())- | trunk()::", "-T", '''
+# lla = ["log", "-r", "all() & ~remote_bookmarks()", "-T", '''
+lla = ["log", "-r", "all()", "-T", '''
         if(root,
             format_root_commit(self),
             label(if(current_working_copy, "working_copy"),
               concat(
                 separate(" ",
-                  format_short_change_id_with_hidden_and_divergent_info(self),
-                  format_short_commit_id(commit_id),
-                  commit_timestamp(self).ago(),
+                  format_short_change_id_with_change_offset(self),
+                  commit_timestamp(self).format("%Y-%m-%d %H:%M:%S"),
+                  author.email().local(),
 
                   bookmarks,
                   tags,
                   working_copies,
-                  if(git_head, label("git_head", "git_head()")),
                   if(config("ui.show-cryptographic-signatures").as_boolean(),
                     format_short_cryptographic_signature(signature)),
                   if(empty, label("empty", "(empty)")),
@@ -126,13 +122,211 @@ l = ["log", "-r", "(::@ | @::) ~(::trunk())- | trunk()::", "-T", '''
                     description.first_line(),
                     label(if(empty, "empty"), description_placeholder),
                   ),
-                  format_short_change_id_with_hidden_and_divergent_info(self),
+                  format_short_change_id_with_change_offset(self),
+                  format_short_commit_id(commit_id),
 
                 ),
               ),
             )
           )
 ''']
+
+# if(conflict, label("conflict", "conflict")),
+
+l = [
+  "log",
+  "-r",
+  "::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root()) | coalesce(trunk(), root())",
+  "-T",
+  '''
+        if(root,
+            format_root_commit(self),
+            label(if(current_working_copy, "working_copy"),
+              concat(
+                separate(" ",
+                  format_short_change_id_with_change_offset(self),
+                  commit_timestamp(self).ago(),
+
+                  bookmarks,
+                  tags,
+                  working_copies,
+                  if(config("ui.show-cryptographic-signatures").as_boolean(),
+                    format_short_cryptographic_signature(signature)),
+                  if(empty, label("empty", "(empty)")),
+                  if(description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                  ),
+                  format_short_change_id_with_change_offset(self),
+
+                ),
+              ),
+            )
+          )
+''',
+]
+
+ll = [
+  "log",
+  # "-r",
+  # "(all() & ~remote_bookmarks() & ~ancestors(trunk()))",
+  # "all() & ~remote_bookmarks() & (trunk() | root() | descendants(trunk() | root()))",
+  # "descendants(trunk() | root()) & ~remote_bookmarks()",
+  # "all() & ~remote_bookmarks() & ~ancestors(trunk(), 1)",
+  # "all() & ~remote_bookmarks() & ~ancestors(trunk())",
+  "-r",
+  # "trunk() | root()",
+  "(::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root()) & mine()) | coalesce(trunk(), root()) | (((::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root()) | coalesce(trunk(), root()))+) ~ (::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root()) | coalesce(trunk(), root())) & mine())",
+  "-T",
+  '''
+        if(root,
+            format_root_commit(self),
+            label(if(current_working_copy, "working_copy"),
+              concat(
+                separate(" ",
+                  format_short_change_id_with_change_offset(self),
+                  commit_timestamp(self).format("%Y-%m-%d %H:%M:%S"),
+
+                  bookmarks,
+                  tags,
+                  working_copies,
+                  if(config("ui.show-cryptographic-signatures").as_boolean(),
+                    format_short_cryptographic_signature(signature)),
+                  if(empty, label("empty", "(empty)")),
+                  if(description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                  ),
+                  format_short_change_id_with_change_offset(self),
+                  format_short_commit_id(commit_id),
+
+                ),
+              ),
+            )
+          )
+''',
+]
+
+la = [
+  "log",
+  "-r",
+  # "(all() & ~remote_bookmarks() & ~ancestors(trunk() | root())) | (trunk() | root()) ~ (trunk();;,",
+
+  # "all() & ~remote_bookmarks() & ~ancestors(trunk(), 1)",
+  "mine() | trunk() | root()",
+  # "all() & ~remote_bookmarks() & ~ancestors(trunk(), 1) & descendants(trunk()--)",
+  # "-r",
+  # "trunk()",
+  "--limit",
+  "1000",
+
+  # "((::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root()))) | coalesce(trunk(), root()) | (((::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root()) | coalesce(trunk(), root()))+) ~ (::(heads(@::) ~ (working_copies() ~ @)) ~ ::coalesce(trunk(), root()) | coalesce(trunk(), root())))",
+  "-T",
+  '''
+        if(root,
+            format_root_commit(self),
+            label(if(current_working_copy, "working_copy"),
+              concat(
+                separate(" ",
+                  format_short_change_id_with_change_offset(self),
+                  commit_timestamp(self).format("%Y-%m-%d %H:%M:%S"),
+
+                  bookmarks,
+                  tags,
+                  working_copies,
+                  if(config("ui.show-cryptographic-signatures").as_boolean(),
+                    format_short_cryptographic_signature(signature)),
+                  if(empty, label("empty", "(empty)")),
+                  if(description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                  ),
+                  format_short_change_id_with_change_offset(self),
+                  format_short_commit_id(commit_id),
+
+                ),
+              ),
+            )
+          )
+''',
+]
+
+
+lt = [
+  "log",
+  "-r",
+  # "team() & ::trunk() & committer_date(after:'2025-09-01')",
+  "::trunk() & committer_date(after:'2025-09-01')",
+  "--limit",
+  "1000",
+  "-T",
+  '''
+        if(root,
+            format_root_commit(self),
+            label(if(current_working_copy, "working_copy"),
+              concat(
+                separate(" ",
+                  format_short_change_id_with_change_offset(self),
+                  commit_timestamp(self).format("%Y-%m-%d %H:%M:%S"),
+                  author.email().local(),
+
+                  bookmarks,
+                  tags,
+                  working_copies,
+                  if(config("ui.show-cryptographic-signatures").as_boolean(),
+                    format_short_cryptographic_signature(signature)),
+                  if(empty, label("empty", "(empty)")),
+                  if(description,
+                    description.first_line(),
+                    label(if(empty, "empty"), description_placeholder),
+                  ),
+                  format_short_change_id_with_change_offset(self),
+                  format_short_commit_id(commit_id),
+
+                ),
+              ),
+            )
+          )
+''',
+]
+
+# lta = [
+#   "log",
+#   "-r",
+#   "team() & committer_date(after:'2025-09-01') | trunk()",
+#   "--limit",
+#   "1000",
+#   "-T",
+#   '''
+#         if(root,
+#             format_root_commit(self),
+#             label(if(current_working_copy, "working_copy"),
+#               concat(
+#                 separate(" ",
+#                   format_short_change_id_with_change_offset(self),
+#                   commit_timestamp(self).format("%Y-%m-%d %H:%M:%S"),
+#                   author.email().local(),
+#
+#                   bookmarks,
+#                   tags,
+#                   working_copies,
+#                   if(config("ui.show-cryptographic-signatures").as_boolean(),
+#                     format_short_cryptographic_signature(signature)),
+#                   if(empty, label("empty", "(empty)")),
+#                   if(description,
+#                     description.first_line(),
+#                     label(if(empty, "empty"), description_placeholder),
+#                   ),
+#                   format_short_change_id_with_change_offset(self),
+#                   format_short_commit_id(commit_id),
+#
+#                 ),
+#               ),
+#             )
+#           )
+# ''',
+# ]
+#
 
 ls = [
   "log",
@@ -151,19 +345,18 @@ lx = [
             label(if(current_working_copy, "working_copy"),
               concat(
                 separate(" ",
-                  format_short_change_id_with_hidden_and_divergent_info(self),
+                  format_short_change_id_with_change_offset(self),
                   format_short_commit_id(commit_id),
                   commit_timestamp(self).ago(),
                   bookmarks,
                   tags,
                   working_copies,
-                  if(git_head, label("git_head", "git_head()")),
                   if(config("ui.show-cryptographic-signatures").as_boolean(),
                     format_short_cryptographic_signature(signature)),
                   if(empty, label("empty", "(empty)")),
                   if(description.first_line().substr(0, 32) == description.first_line(),
                     description.first_line(),
-                    description.first_line().substr(0, 31) ++ "…",
+                    description.first_line().substr(0, 31) ++ "â€¦",
                   ),
                   if(description,
                     description.first_line(),
@@ -194,3 +387,6 @@ ra = ["rebase", "-s", "all:roots(trunk()..mutable())", "-d", "trunk"]
 rb = ["rebase", "-s", "all:roots(trunk()..mutable()) & mine()", "-d", "trunk"]
 s = ["squash"]
 si = ["squash", "--interactive"]
+
+fc = ["diff", "--summary"]
+ds = ["diff", "--stat"]
