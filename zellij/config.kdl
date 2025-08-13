@@ -2,8 +2,9 @@
 // ~/.config/zellij/config.kdl
 
 // Disable frames around panes
-pane_frames false
+pane_frames true
 default_shell "fish"
+simplified_ui true
 // default_shell "zsh -c fish"
 // Use a minimal default layout
 // default_layout "./compact.kdl"
@@ -91,9 +92,9 @@ themes {
             emphasis_2 180 142 173
             emphasis_3 0
         }
-frame_unselected {
-            base 123 136 161
-            background 0
+        frame_unselected {
+            base 76 86 106      // Dimmer Nord gray for unfocused borders
+            background 46 52 64 // Dark Nord background for unfocused panes
             emphasis_0 208 135 112
             emphasis_1 136 192 208
             emphasis_2 180 142 173
@@ -177,7 +178,7 @@ keybinds clear-defaults=true {
         bind "Super Right" { MoveFocus "Right"; }
 
 
-
+        bind "Ctrl Super e" { EditScrollback; }
         // Quit Zellij
         bind "Ctrl q" { Quit; }
 
@@ -205,7 +206,8 @@ plugins {
 ui {
     pane_frames {
         hide_session_name true
-                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+        tab_active   "#[fg=#9399B2,bold,italic] {name} "
+        rounded_corners false
     }
     status_bar {
         show false
