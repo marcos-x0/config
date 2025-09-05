@@ -11,17 +11,18 @@
   - for Sequoia (macOS 15) [here](https://github.com/macports/macports-base/releases/download/v2.10.5/MacPorts-2.10.5-15-Sequoia.pkg)
 - follow the GUI installer instructions.
 
-## install macports and homebrew packages
+## install homebrew packages [TODO]
 
-```bash
-~/.config/install-pkgs.bash
-```
-
-```bash
-echo (which fish) | sudo tee -a /etc/shells
-chsh -s (which fish)
-```
-
+<!---->
+<!-- ```bash -->
+<!-- ~/.config/install-pkgs.bash -->
+<!-- ``` -->
+<!---->
+<!-- ```bash -->
+<!-- echo (which fish) | sudo tee -a /etc/shells -->
+<!-- chsh -s (which fish) -->
+<!-- ``` -->
+<!---->
 <!-- # installing nix -->
 <!---->
 <!-- ```bash -->
