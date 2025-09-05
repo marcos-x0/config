@@ -5,9 +5,7 @@ $username\
 $hostname\
 $git_metrics\
 ${custom.jj}\
-${custom.git_branch}\
-${custom.git_state}\
-${custom.git_status}\
+${custom.git}\
 $cmd_duration\
 $line_break\
 $directory\
@@ -117,21 +115,17 @@ Unknown = " "
 Void = " "
 Windows = "󰍲 "
 
-[custom.git_branch]
-when = true
-command = "jj root >/dev/null 2>&1 || starship module git_branch"
-
-[custom.git_state]
-when = true
-command = "jj root >/dev/null 2>&1 || starship module git_state"
-
-[custom.git_status]
-when = true
-command = "jj root >/dev/null 2>&1 || starship module git_status"
+[custom.git]
+command = '$HOME/.local/bin/git-prompt.bash'
+format = "[$symbol](green bold) $output "
+symbol = " "
+when = '$HOME/.local/bin/is-git-no-jj.bash'
+ignore_timeout = true
 
 
 [custom.jj]
 command = '$HOME/.local/bin/repo-prompt.bash'
 format = "[$symbol](blue bold) $output "
 symbol = "󰊢 "
-when = "jj root --ignore-working-copy"
+when = '$HOME/.local/bin/is-jj-repo.bash'
+ignore_timeout = true
