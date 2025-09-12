@@ -32,6 +32,8 @@ return {
         preset = "dropdown",
       },
     },
+    image = { enabled = false },
+    lazygit = { enabled = false },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
