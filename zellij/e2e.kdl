@@ -1,0 +1,18 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="file:~/.config/zellij/zj-status-bar.wasm"
+        }
+        children
+    }
+
+    tab name="e2e" {
+        pane split_direction="vertical" {
+            pane split_direction="horizontal" size="40%" {
+                pane name="emulators" command="/Users/mgj/.dc/scripts/e2e-emulators.sh"
+                pane name="server" command="/Users/mgj/.dc/scripts/e2e-server.sh"
+            }
+            pane name="tests" command="/Users/mgj/.dc/scripts/e2e-wait.sh" size="60%" focus=true
+        }
+    }
+}
