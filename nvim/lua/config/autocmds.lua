@@ -43,6 +43,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.diagnostic.enable(false, { bufnr = 0 })
+  end,
+})
+
 -- In your init.lua or equivalent config file
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "scss", "css" },
@@ -50,7 +58,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     -- Use syntax folding instead of TreeSitter for SCSS
     vim.opt_local.foldmethod = "manual"
     vim.opt_local.foldexpr = "0"
-    vim.opt_local.foldlevel = "0"
+    vim.opt_local.foldlevel = 0
     -- vim.opt_local.foldtext = "foldtext()"
     -- Optionally you can set other folding options
     -- vim.opt.foldlevel = 99  -- To start with all folds open
