@@ -1,9 +1,9 @@
 layout {
-    cwd "/Users/mgj"
+    cwd "~"
 
     default_tab_template {
         pane size=1 borderless=true {
-            plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
+            plugin location="file:~/.config/zellij/zj-status-bar.wasm"
         }
         children
     }
@@ -40,16 +40,22 @@ layout {
         }
     }
 
-    tab name=".dev" focus=true hide_floating_panes=true {
-        // pane size=1 {
-        //     plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"
-        // }
+    tab name=".dev" hide_floating_panes=true {
         pane cwd=".dev" size="66%"
         pane size="34%" split_direction="vertical" {
             pane cwd=".dev" focus=true size="50%"
             pane cwd=".dev" size="50%"
         }
     }
+
+    tab name="skills" focus=true hide_floating_panes=true {
+        pane cwd=".dev/SKILLS" size="66%"
+        pane size="34%" split_direction="vertical" {
+            pane cwd=".dev/SKILLS" focus=true size="50%"
+            pane cwd=".dev/SKILLS" size="50%"
+        }
+    }
+
     new_tab_template {
         // pane size=1 {
         //     plugin location="file:/Users/mgj/.config/zellij/zj-status-bar.wasm"

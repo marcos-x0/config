@@ -172,8 +172,8 @@ keybinds clear-defaults=true {
         bind "Super Shift f" {ToggleFocusFullscreen; }
 
         // Pane management
-        bind "Super -" { NewPane "Down"; }
-        bind "Super \\" { NewPane "Right"; }
+        bind "Ctrl -" { NewPane "Down"; }
+        bind "Ctrl \\" { NewPane "Right"; }
         bind "Super x" { CloseFocus; }
        
         // NavSuper igation between panes
@@ -191,18 +191,23 @@ keybinds clear-defaults=true {
         bind "Ctrl Alt Shift g" { ScrollToBottom; }
 
         // Quit Zellij
-        bind "Ctrl q" { Quit; }
+        bind "Ctrl Alt q" { Quit; }
 
-        bind "Alt r" { SwitchToMode "resize"; }
+        // Override dangerous defaults
+        // bind "Ctrl g" { MoveFocus "Right"; }  // was: locked mode
+        // bind "Ctrl p" { MoveFocus "Right"; }  // was: pane mode (zoom, split, close)
+        // bind "Ctrl t" { MoveFocus "Right"; }  // was: tab mode
+        // bind "Ctrl n" { MoveFocus "Right"; }  // was: resize mode
+        // bind "Ctrl s" { MoveFocus "Right"; }  // was: scroll mode
+        // bind "Ctrl o" { MoveFocus "Right"; }  // was: session mode (detach)
+        // bind "Ctrl h" { MoveFocus "Right"; }  // was: move mode (reorder panes)
+        // bind "Ctrl b" { MoveFocus "Right"; }  // was: tmux mode
+        // bind "Alt n" { MoveFocus "Right"; }   // was: new pane
+        // bind "Alt f" { MoveFocus "Right"; }   // was: toggle floating panes
+        // bind "Alt z" { MoveFocus "Right"; }   // was: toggle pane zoom
+
     }
 
-    resize {
-        bind "Alt r" { SwitchToMode "normal"; }
-        bind "Alt  Left" { Resize "Left"; }
-        bind "Alt Down" { Resize "Down"; }
-        bind "Alt Up" { Resize "Up"; }
-        bind "Alt Right" { Resize "Right"; }
-      }
 }
 
 plugins {
