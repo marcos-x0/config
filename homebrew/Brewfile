@@ -1,9 +1,13 @@
+tap "felixkratz/formulae", trusted: true
+tap "nikitabobko/tap", trusted: true
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima", restart_service: :changed
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Git-compatible distributed version control system
 brew "jj"
+# TIFF library and utilities
+brew "libtiff"
 # Development kit for the Java programming language
 brew "openjdk", link: true
 # Development kit for the Java programming language
@@ -12,6 +16,10 @@ brew "openjdk@17"
 brew "poppler"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.14"
+# A window border system for macOS
+brew "felixkratz/formulae/borders", trusted: true
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 npm "firebase-tools"
 npm "npm-check-updates"
 npm "pnpm"
