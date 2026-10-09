@@ -3,7 +3,13 @@ configstore
 containers
 iterm2
 nvim-*
-.DS_store
+**/.DS_Store
+.envrc
+envrc
+.envrc.*
+envrc.*
+devbox.json
+devbox.lock
 *.swo
 *.swp
 .undo
