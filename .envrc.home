@@ -1,0 +1,3 @@
+# Append to PATH — lowest priority, only used if brew/devbox don't have the tool
+export PATH="$PATH:$HOME/.local/share/npm-global/bin"
+export PATH="$PATH:$HOME/.local/bin"
