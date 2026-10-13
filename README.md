@@ -1,4 +1,8 @@
-# installing MacPorts
+# dotfiles
+
+macOS development environment managed with jj (jujutsu) and git.
+
+## Prerequisites
 
 - install xcode command line tools
 
@@ -11,44 +15,43 @@
   - for Sequoia (macOS 15) [here](https://github.com/macports/macports-base/releases/download/v2.10.5/MacPorts-2.10.5-15-Sequoia.pkg)
 - follow the GUI installer instructions.
 
-## install homebrew packages [TODO]
+## Setup
 
-<!---->
-<!-- ```bash -->
-<!-- ~/.config/install-pkgs.bash -->
-<!-- ``` -->
-<!---->
-<!-- ```bash -->
-<!-- echo (which fish) | sudo tee -a /etc/shells -->
-<!-- chsh -s (which fish) -->
-<!-- ``` -->
-<!---->
-<!-- # installing nix -->
-<!---->
-<!-- ```bash -->
-<!-- curl \ -->
-<!--   --proto '=https' \ -->
-<!--   --tlsv1.2 \ -->
-<!--   -sSf \ -->
-<!--   -L https://install.determinate.systems/nix \ -->
-<!--   | sh -s -- install --determinate -->
-<!---->
-<!-- ``` -->
-<!---->
-<!-- ## installing nix-darwin -->
-<!---->
-<!-- ```bash -->
-<!-- sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin -->
-<!-- sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin -->
-<!-- sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin -->
-<!---->
-<!-- nix --extra-experimental-features nix-command \ -->
-<!--   --extra-experimental-features flakes \ -->
-<!--   run nix-darwin -- switch --flake ~/.config/nix -->
-<!-- ``` -->
-<!---->
-<!-- ## #NOTE -->
-<!---->
-<!-- on reboot the nix-store might lose its password, since its encrypted -->
-<!-- go to the keychain and look for disk3 and recover the password from there. -->
-<!-- And when saving it check the box to store in the keychain -->
+```bash
+~/.config/bin/install-env.bash
+```
+
+This is the main setup script. It must not be run as root. It does the following:
+
+1. Creates `~/.local/bin` and `~/.local/share/npm-global`
+2. Copies `.npmrc` to `~/` (needed before deps — npm prefix affects brew bundle)
+3. Runs `install-deps.bash` which:
+   - Installs Homebrew (if missing)
+   - Installs Devbox (if missing), updates it, and installs global packages from `devbox/devbox-deps.txt`
+   - Runs `brew doctor`, `brew update`, `brew upgrade`, and installs packages from `homebrew/Brewfile`
+4. Copies dotfiles to `~/`: `.envrc`, `.zshrc`, `.zshenv`
+5. Copies starship prompt scripts to `~/.local/bin/`: `repo-prompt.bash`, `is-jj-repo.bash`, `is-git-no-jj.bash`
+6. Enables Touch ID for sudo
+
+All copies are idempotent — unchanged files are skipped, and existing files are backed up with a timestamp before overwriting.
+
+## What's included
+
+| Directory    | What                              |
+|-------------|-----------------------------------|
+| `bin/`      | Setup scripts and starship prompts |
+| `devbox/`   | Devbox global package list         |
+| `homebrew/` | Brewfile                           |
+| `zsh/`      | `.zshrc` and `.zshenv`             |
+| `direnv/`   | direnv config                      |
+| `git/`      | git config and ignore              |
+| `jj/`       | Jujutsu VCS config                 |
+| `nvim/`     | Neovim (LazyVim)                   |
+| `ghostty/`  | Ghostty terminal config            |
+| `starship.toml` | Starship prompt config         |
+| `aerospace/`| AeroSpace window manager           |
+| `fish/`     | Fish shell config                  |
+| `zellij/`   | Zellij terminal multiplexer       |
+| `bat/`      | bat (cat replacement) config       |
+| `karabiner/`| Karabiner-Elements key remapping   |
+
