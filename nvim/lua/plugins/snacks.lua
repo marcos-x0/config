@@ -1,4 +1,25 @@
 ---@diagnostic disable: assign-type-mismatch
+local exclude = {
+  "node_modules",
+  ".git",
+  ".jj",
+  ".next",
+  ".nuxt",
+  "dist",
+  "build",
+  "target",
+  "__pycache__",
+  ".venv",
+  "venv",
+  ".mypy_cache",
+  ".pytest_cache",
+  ".tox",
+  "vendor",
+  ".gradle",
+  ".cache",
+  ".DS_Store",
+}
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -19,11 +40,14 @@ return {
       ---@class snacks.picker.formatters.Config
       formatters = { file = { filename_first = true, truncate = 100000 } },
       sources = {
+        files = { hidden = true, ignored = true, exclude = exclude },
+        grep = { hidden = true, ignored = true, exclude = exclude },
         explorer = {
+          hidden = true,
+          ignored = true,
+          exclude = exclude,
           auto_close = true,
           layout = { preset = "default", preview = true, layout = { backdrop = true } },
-          -- your explorer picker configuration comes here
-          -- or leave it empty to use the default settings
         },
         buffers = { current = false },
       },
