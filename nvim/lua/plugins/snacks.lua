@@ -18,6 +18,7 @@ local exclude = {
   ".gradle",
   ".cache",
   ".DS_Store",
+  ".devbox",
 }
 
 return {

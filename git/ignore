@@ -8,6 +8,7 @@ envrc
 envrc.*
 devbox.json
 devbox.lock
+.devbox
 *.bak
 
 
