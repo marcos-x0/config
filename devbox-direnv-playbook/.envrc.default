@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# WARN: **DO NOT MODIFY THIS FILE UNLESS YOU REALLY KNOW WHAT YOU'RE DOING**
+# This file is crucial for developer experience and environment isolation.
+# Modifying this code may break tool version isolation between projects
+# and cause hard-to-debug development issues.
+#
+# BEGIN - DIRENV PROJECT SETUP
+
+# Record devbox directories for deferred activation at <project-root>/.envrc
+# Activation is NOT done here — it is deferred so that <project-root> can
+# activate all devbox environments in the correct order, producing the right
+# PATH priority without any reordering hacks.
+#
+# DEVBOX_DIRS is built by prepending — the deepest directory runs first but
+# ends up last in the list. When <project-root> loops forward through the list,
+# shallowest activates first and deepest activates last, prepending to PATH
+# each time. The deepest project's tools end up at the front of PATH.
+if [[ -f "devbox.json" ]]; then
+  # Check if devbox command is available before attempting to use it
+  if ! has devbox; then
+    echo "Error: devbox command not found. Please install devbox." >&2
+    return 1
+  fi
+
+  # Get the directory containing this .envrc file (not user's current directory)
+  ENVRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+  echo "Found devbox at $ENVRC_DIR (activation deferred to <project-root>)"
+
+  # Prepend so the list ends up in shallowest-to-deepest order
+  export DEVBOX_DIRS="$ENVRC_DIR${DEVBOX_DIRS:+:$DEVBOX_DIRS}"
+fi
+
+# Chain to parent .envrc — walks up the directory tree to <project-root>/.envrc
+source_up_if_exists
+
+# PATH_add and env vars must be after source_up_if_exists so inner dirs win.
+# Safest place for PATH_add is .envrc.local — guaranteed correct ordering.
+#
+# Load environment files in correct precedence order across directory hierarchy:
+# Starting from root directory, traversing through all parent directories,
+# ending at current directory. Each level loads in this order:
+# 1. .env.local (committed with placeholders for secrets)
+# 2. .envrc.local - bash scripts only (PATH manipulation, tool config)
+#
+# IMPORTANT: .env files are NEVER loaded — sensitive data must not be loaded
+# into the shell environment by direnv.
+#
+# Files watched by direnv for automatic reload (changes trigger cascading effects):
+# - .env.local files are watched
+# - .envrc (symlink to .envrc.default) is watched
+# - .envrc.local files are watched
+#
+# Example: <project-root>/platform/packages/ui/ loads files from:
+# - <project-root>/.env.local → <project-root>/.envrc.local
+# - <project-root>/platform/.env.local → <project-root>/platform/.envrc.local
+# - <project-root>/platform/packages/ui/.env.local → .../.envrc.local
+
+# Load .env.local first (committed configuration with placeholders)
+watch_file .env.local
+dotenv_if_exists .env.local
+
+# WARN: **DO NOT MODIFY ENVIRONMENT VARIABLES HERE**
+# - Leverage direnv utilities as much as possible
+#   - PATH_add "$PWD/bin" to prepend directory to PATH
+#   - PATH_rm "/unwanted/path" to remove from PATH
+#   - Use direnv utilities for PATH manipulation - NO direct $PATH manipulation
+#   - Direct $PATH changes persist and break project tooling/env isolation
+# - More complex bash manipulation possible but should be avoided
+# - Use .env.local for committed vars with secret placeholders
+# - NEVER load .env files — sensitive data must not enter the shell environment
+watch_file .envrc.local
+if [[ -f .envrc.local ]]; then
+  source .envrc.local
+fi
+
+# check out https://www.jetpack.io/devbox/docs/ide_configuration/direnv/
+# for more details
