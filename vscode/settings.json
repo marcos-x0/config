@@ -21,6 +21,10 @@
   // Disable minimap
   "editor.minimap.enabled": false,
 
+  // Hide tabs — use Cmd+P to switch files
+  "workbench.editor.showTabs": "none",
+  "workbench.editor.enablePreview": true,
+
   // File watchers — skip heavy dirs
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -35,6 +39,30 @@
     "**/build": true,
     "**/.next": true
   },
+
+  // Neovim
+  "vscode-neovim.neovimExecutablePaths.darwin": "nvim",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+
+  // Terminal
+  "terminal.integrated.defaultProfile.osx": "zsh-fish",
+  "terminal.integrated.profiles.osx": {
+    "zsh-fish": {
+      "path": "zsh",
+      "args": ["-c", "eval \"$(direnv hook zsh)\"; eval \"$(direnv export zsh)\"; exec fish"]
+    }
+  },
+  "terminal.integrated.tabs.enabled": false,
+  "terminal.integrated.suggest.enabled": false,
+
+  // Dim unfocused panes
+  "accessibility.dimUnfocused.enabled": true,
+  "accessibility.dimUnfocused.opacity": 0.6,
+
+  // Git
+  "git.mergeEditor": true,
 
   // Font
   "editor.fontFamily": "Iosevka Mgj Mono",

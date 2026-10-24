@@ -1,0 +1,75 @@
+[
+  // Pane navigation — Alt+Arrow
+  {
+    "key": "alt+left",
+    "command": "workbench.action.focusLeftGroup"
+  },
+  {
+    "key": "alt+right",
+    "command": "workbench.action.focusRightGroup"
+  },
+  {
+    "key": "alt+up",
+    "command": "workbench.action.focusAboveGroup"
+  },
+  {
+    "key": "alt+down",
+    "command": "workbench.action.focusBelowGroup"
+  },
+  // Split panes — Alt+\ and Alt+-
+  {
+    "key": "alt+\\",
+    "command": "workbench.action.splitEditorRight"
+  },
+  {
+    "key": "alt+-",
+    "command": "workbench.action.splitEditorDown"
+  },
+  // Terminal pane navigation — Cmd+Arrow
+  {
+    "key": "cmd+left",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+right",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+up",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+down",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  // Split terminal — Cmd+\ and Cmd+-
+  {
+    "key": "cmd+\\",
+    "command": "workbench.action.terminal.splitInActiveWorkspace",
+    "when": "terminalFocus"
+  },
+  // Panel tab navigation (Problems, Output, Terminal, etc.) — Alt+Arrow when panel focused
+  {
+    "key": "alt+left",
+    "command": "workbench.action.previousPanelView",
+    "when": "panelFocus"
+  },
+  {
+    "key": "alt+right",
+    "command": "workbench.action.nextPanelView",
+    "when": "panelFocus"
+  },
+  // Switch between editor and terminal — Ctrl+Alt+Arrow
+  {
+    "key": "ctrl+alt+down",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "workbench.action.focusActiveEditorGroup"
+  }
+]
