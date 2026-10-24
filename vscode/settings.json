@@ -1,0 +1,38 @@
+{
+  // AI
+  "chat.disableAIFeatures": true,
+
+  // Telemetry
+  "telemetry.telemetryLevel": "off",
+
+  // Updates — homebrew handles this
+  "update.mode": "none",
+  "update.showReleaseNotes": false,
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+
+  // Startup
+  "workbench.startupEditor": "none",
+  "workbench.welcomePage.walkthroughs.openOnInstall": false,
+
+  // Extensions noise
+  "extensions.ignoreRecommendations": true,
+
+  // Disable minimap
+  "editor.minimap.enabled": false,
+
+  // File watchers — skip heavy dirs
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.git/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.next/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.next": true
+  }
+}
