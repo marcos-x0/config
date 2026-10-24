@@ -34,5 +34,198 @@
     "**/dist": true,
     "**/build": true,
     "**/.next": true
+  },
+
+  // Font
+  "editor.fontFamily": "Iosevka Mgj Mono",
+  "editor.fontSize": 13,
+  "editor.fontWeight": "normal",
+  "editor.fontLigatures": "'calt', 'dlig'",
+  "editor.letterSpacing": -1,
+  "editor.gpuAcceleration": "off",
+
+  // Terminal font — needs Nerd Font fallback for icons
+  "terminal.integrated.fontFamily": "Iosevka Mgj Mono, Symbols Nerd Font Mono",
+
+  // Theme
+  "workbench.colorTheme": "Nord",
+
+  // UI color overrides — darker background (#212632 instead of stock #2E3440)
+  "workbench.colorCustomizations": {
+    "[Nord]": {
+      "editor.background": "#212632",
+      "sideBar.background": "#212632",
+      "activityBar.background": "#212632",
+      "titleBar.activeBackground": "#212632",
+      "titleBar.inactiveBackground": "#212632",
+      "panel.background": "#212632",
+      "terminal.background": "#212632",
+      "editorGroupHeader.tabsBackground": "#212632",
+      "editorGroupHeader.noTabsBackground": "#212632",
+      "tab.inactiveBackground": "#212632",
+      "statusBar.background": "#2E3440",
+      "editorWidget.background": "#212632",
+      "editorSuggestWidget.background": "#212632",
+      "notificationCenterHeader.background": "#212632",
+      "editorGutter.background": "#212632",
+      "minimap.background": "#212632",
+      "peekViewEditor.background": "#212632",
+      "peekViewResult.background": "#212632",
+      "sideBar.border": "#2E3440",
+      "panel.border": "#2E3440",
+      "editorGroup.border": "#2E3440"
+    }
+  },
+
+  // Semantic token overrides
+  "editor.semanticTokenColorCustomizations": {
+    "[Nord]": {
+      "rules": {
+        "variable": "#C2C8D2",
+        "property": "#C2C8D2"
+      }
+    }
+  },
+
+  // Syntax highlighting overrides — porting gbprod/nord.nvim base + personal overrides
+  "editor.tokenColorCustomizations": {
+    "[Nord]": {
+      "comments": {
+        "foreground": "#5A6984",
+        "fontStyle": "bold italic"
+      },
+      "textMateRules": [
+        // String quotes → same green as string content
+        {
+          "scope": "punctuation.definition.string",
+          "settings": {
+            "foreground": "#A3BE8C"
+          }
+        },
+        // Punctuation brackets → frost.ice (gbprod base, VSCode Nord has snow storm)
+        {
+          "scope": [
+            "punctuation.definition.block",
+            "punctuation.definition.arguments",
+            "punctuation.definition.binding-pattern",
+            "meta.brace.round",
+            "meta.brace.square",
+            "meta.brace.curly",
+            "punctuation.bracket"
+          ],
+          "settings": {
+            "foreground": "#88C0D0"
+          }
+        },
+        // Punctuation delimiters → purple
+        {
+          "scope": [
+            "punctuation.separator",
+            "punctuation.terminator",
+            "punctuation.accessor",
+            "punctuation.separator.comma",
+            "punctuation.definition.separator"
+          ],
+          "settings": {
+            "foreground": "#B48EAD"
+          }
+        },
+        // Tag attributes → purple
+        {
+          "scope": "entity.other.attribute-name",
+          "settings": {
+            "foreground": "#B48EAD"
+          }
+        },
+        // Tags → artic water
+        {
+          "scope": "entity.name.tag",
+          "settings": {
+            "foreground": "#81A1C1"
+          }
+        },
+        // Built-in HTML tags in JSX/TSX → bold snow storm
+        {
+          "scope": [
+            "entity.name.tag.html",
+            "entity.name.tag.tsx",
+            "entity.name.tag.jsx"
+          ],
+          "settings": {
+            "foreground": "#D8DEE9",
+            "fontStyle": "bold"
+          }
+        },
+        // JSX/TSX component tags (PascalCase) → bold italic artic water
+        {
+          "scope": [
+            "support.class.component.tsx",
+            "support.class.component.jsx"
+          ],
+          "settings": {
+            "foreground": "#81A1C1",
+            "fontStyle": "bold italic"
+          }
+        },
+        // Variable parameters → artic water
+        {
+          "scope": "variable.parameter",
+          "settings": {
+            "foreground": "#81A1C1"
+          }
+        },
+        // Type builtin → artic water
+        {
+          "scope": [
+            "support.type.builtin",
+            "support.type.primitive"
+          ],
+          "settings": {
+            "foreground": "#81A1C1"
+          }
+        },
+        // Numbers → orange
+        {
+          "scope": "constant.numeric",
+          "settings": {
+            "foreground": "#D08770"
+          }
+        },
+        // Booleans → artic ocean
+        {
+          "scope": [
+            "constant.language.boolean",
+            "constant.language.true",
+            "constant.language.false"
+          ],
+          "settings": {
+            "foreground": "#5E81AC"
+          }
+        },
+        // Keyword imports → italic artic ocean
+        {
+          "scope": [
+            "keyword.control.import",
+            "keyword.control.export",
+            "keyword.control.from"
+          ],
+          "settings": {
+            "foreground": "#5E81AC",
+            "fontStyle": "italic"
+          }
+        },
+        // Async/await → yellow
+        {
+          "scope": [
+            "keyword.control.flow.await",
+            "keyword.control.flow.async",
+            "storage.modifier.async"
+          ],
+          "settings": {
+            "foreground": "#EBCB8B"
+          }
+        }
+      ]
+    }
   }
 }
