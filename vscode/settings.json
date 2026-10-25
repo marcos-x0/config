@@ -61,6 +61,21 @@
   "accessibility.dimUnfocused.enabled": true,
   "accessibility.dimUnfocused.opacity": 0.6,
 
+  // Inlay hints
+  "editor.inlayHints.enabled": "on",
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": false,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": false,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+
   // Git
   "git.mergeEditor": true,
 
@@ -101,7 +116,11 @@
       "peekViewResult.background": "#212632",
       "sideBar.border": "#2E3440",
       "panel.border": "#2E3440",
-      "editorGroup.border": "#2E3440"
+      "editorGroup.border": "#2E3440",
+      "editorInlayHint.background": "#00000000",
+      "editorInlayHint.foreground": "#616E88",
+      "editorHoverWidget.background": "#212632",
+      "editorHoverWidget.border": "#2E3440"
     }
   },
 
