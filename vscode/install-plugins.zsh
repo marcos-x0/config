@@ -3,3 +3,4 @@
 
 code --install-extension arcticicestudio.nord-visual-studio-code
 code --install-extension asvetliakov.vscode-neovim
+code --install-extension jjk.jjk

@@ -56,6 +56,12 @@ cp /nix/store/*nerd-fonts-symbols-only*/share/fonts/truetype/NerdFonts/Symbols/*
 | `Cmd+←/→` | Navigate between terminal splits |
 | `Cmd+↑/↓` | Switch between terminal instances |
 
+### Code actions
+
+| Shortcut | Action |
+|---|---|
+| `Cmd+.` | Show code actions (refactor, quick fix, etc.) |
+
 ### Search and navigation
 
 | Shortcut | Action |

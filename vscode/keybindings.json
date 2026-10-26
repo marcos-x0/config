@@ -71,5 +71,16 @@
   {
     "key": "ctrl+alt+up",
     "command": "workbench.action.focusActiveEditorGroup"
+  },
+  // Source control (jj) — Cmd+Shift+J
+  {
+    "key": "cmd+shift+j",
+    "command": "workbench.view.scm"
+  },
+  // Close code actions menu with Cmd+. without leaking to neovim
+  {
+    "key": "cmd+.",
+    "command": "hideCodeActionWidget",
+    "when": "codeActionMenuVisible"
   }
 ]
